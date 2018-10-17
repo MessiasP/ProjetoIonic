@@ -1,3 +1,44 @@
 page-home {
+  .titleHome{
+    background-color: aquamarine;
+    color: black;
+    text-shadow: 2px 2px 8px gray;
+  }
+
+  .btnAcesso{
+    position: relative;
+    float: right;
+  }
+
+  .imageHere {
+    background-image: url("../../assets/imgs/Restaurante.jpg");
+  }
+
+  .textoInsp{
+    text-align: center;
+    color: blue;
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.692);
+  }
+
+  .slide1 {
+    background-image: url(../../assets/imgs/womannegociation.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    height: 35%;
+  }
+  .slide2 {
+    background-image: url("../../assets/imgs/working-laptop.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    position: relative;
+    height: 35%;
+  }
+
+  .textoInsp2{
+    text-align: center;
+    color: rgb(0, 152, 240);
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.699);
+  }
 
 }

@@ -1,0 +1,49 @@
+<!--
+  Generated template for the RegistraPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Registrar</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="imageHere" padding>
+    <div class="alin">
+      <div class="espace">
+        <label class="lblText">Nome *</label>
+        <input type="text">
+      </div>
+      <div class="espace">
+          <label class="lblText">Sobrenome</label>
+          <input type="text">
+      </div>
+      <div class="espace">
+          <label class="lblText">Endereço</label>
+          <input type="text">
+      </div>
+      <div class="espace">
+          <label class="lblText">CEP *</label>
+          <input type="text">
+      </div>
+      <div class="espace">
+        <label class="lblText">CPF *</label>
+        <input type="password">
+      </div>
+      <div class="espace">
+          <label class="lblText">Senha *</label>
+          <input type="password">
+        </div>
+      <div class="espace">
+          <label class="lblText">Confirmar Senha *</label>
+          <input type="password">
+        </div>
+        <button ion-button color="primary" class="btnAcesso">Salvar</button>
+        <button ion-button class="btnCancela" (click)="onLogin()">Cancelar</button>
+    </div>
+</ion-content>

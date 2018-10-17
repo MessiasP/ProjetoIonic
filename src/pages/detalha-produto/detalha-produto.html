@@ -1,0 +1,32 @@
+<!--
+  Generated template for the DetalhaProdutoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>detalhes do Produto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="imageHere" padding>
+    <div class="alin">
+        <h4 class="textoPrinc">Coca-Cola</h4>
+        <div class="slide1"></div>
+      <div>
+          <div class="espace">
+            <label class="lblCode">Cod do produto: 123</label>
+            <label class="lblName">Descrição: 2 Litros</label>
+          </div>
+          <div>
+            <button ion-button color="primary" class="btnAcesso">Adicionar ao carrinho</button>
+            <button ion-button color="primary" class="btnAcesso" (click)="onResumo()">Ver carrinho</button>
+            <button ion-button class="btnCancela" (click)="onBusca()">Voltar</button>
+          </div>
+      </div>
+    </div>
+</ion-content>

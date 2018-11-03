@@ -1,37 +1,9 @@
 page-resumo {
 
-  .alin {
-    margin: 5% 20%;
-    text-align: center;
-  }
-
-  .imageHere {
-   // background-image: url("../../assets/imgs/Restaurante.jpg");
-   // background-size: 100%;
-    background-repeat: no-repeat;
-    position: relative;
-  }
-
   .tabelaBusca {
     width:100%;
     background-color: rgba(127, 255, 212, 0.479);
     border: 2px black;
-  }
-
-  .btnDesiste {
-    background-color: red;
-  }
-
-  .lblName {
-    text-align: center;
-    color: blue;
-    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.692);
-  }
-
-  .lblCode {
-    text-align: center;
-    color: blue;
-    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.692);
   }
 
 }

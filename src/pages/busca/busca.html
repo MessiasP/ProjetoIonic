@@ -7,8 +7,8 @@
 </ion-header>
 
 
-<ion-content class="imageHere" padding>
-  <ion-list col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 text-center>
+<ion-content padding>
+  <ion-list text-center>
     <h4>Escolha o produto desejado!</h4>
   <form (submit)="searchProduto()" >
       <ion-item class="espace">
@@ -24,7 +24,7 @@
   <button ion-button block color="primary" (click)="onDetalhaProduto()">{{'DETALHAR' | translate}}</button>
   <button ion-button block color="green" (click)="onCadastraProduto()">{{'NOVO PRODUTO' | translate}}</button>
 </ion-list>
-    <table class="tabelaBusca">
+    <table>
       <tr>
         <th>Cod</th>
         <th>Nome</th>

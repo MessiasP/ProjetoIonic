@@ -7,33 +7,34 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>cadastrar Produto</ion-title>
+    <ion-title>cadastro de Produto</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content class="imageHere" padding>
-    <div class="alin">
-      <div class="espace">
-        <label class="lblUser">Codigo</label>
-        <input type="text">
-      </div>
-      <div class="espace">
-          <label class="lblUser">Nome</label>
-          <input type="text">
-      </div>
-      <div class="espace">
-          <label class="lblUser">Valor</label>
-          <input type="text">
-      </div>
-      <div class="espace">
-          <label class="lblUser">Quantidade</label>
-          <input type="number">
-      </div>
-      <button ion-button color="primary" class="btnAcesso">Inserir imagem</button>
-      <button ion-button color="primary" class="btnAcesso">Salvar</button>
-      <button ion-button color="secund" class="btnAcesso" (click)="onBusca()">Cancelar</button>
-    </div>
-
+<ion-content padding>
+  <ion-list>
+    <form (submit)="onSave()">
+      <ion-item>
+        <ion-label floating>Codigo</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>{{'Nome' | translate}}</ion-label>
+          <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>{{'Valor' | translate}}</ion-label>
+          <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>{{'Quantidade' | translate}}</ion-label>
+          <ion-input type="text"></ion-input>
+      </ion-item>
+      <button ion-button block color="primary">Salvar</button>
+    </form>
+    <button ion-button block color="primary">Inserir imagem</button>
+    <button ion-button block color="danger" (click)="onBusca()">Cancelar</button>
+  </ion-list>
 </ion-content>

@@ -5,23 +5,18 @@
         Control-BOX
       </ion-title>
     </div>
-    <div class="ui-g-6">
-        <button ion-button color="primary" class="btnAcesso" (click)="onLogin()">Acessar</button>
-    </div>
+    <ion-buttons end class="ui-g-6">
+        <button ion-button ion-button color="primary" class="btnAcesso" (click)="onLogin()">Acessar</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="imageHere" padding>
-
-      <h1 class="textoInsp">O controle do seu negocio na palma da mão!</h1>
-      <ion-slides pager="true">
-          <ion-slide *ngFor="let slide of slider" >
-            <img [src]="slide.image"/>
-          </ion-slide>
-          <ion-slide>
-              <h1 class="slide2"></h1>
-          </ion-slide>
-      </ion-slides>
-      <h2 class="textoInsp2">Não espere acontecer, faça você MESMO!</h2>
-
+<ion-content no-bounce>
+   <ion-slides pager="true" (ionSlideWillChange)="onSlideChangeStart($event)">
+    <ion-slide  *ngFor="let slide of slides">
+      <h1>O controle do seu negocio na palma da mão!</h1>
+      <img class="slide-image" [src]="slide.image"/>
+      <h2>Não espere acontecer, faça você MESMO!</h2>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

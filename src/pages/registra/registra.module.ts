@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { RegistraPage } from './registra';
@@ -8,6 +9,7 @@ import { RegistraPage } from './registra';
   ],
   imports: [
     IonicPageModule.forChild(RegistraPage),
+    TranslateModule.forChild(),
   ],
 })
 export class RegistraPageModule {}

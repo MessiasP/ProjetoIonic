@@ -14,36 +14,38 @@
 
 
 <ion-content class="imageHere" padding>
-    <div class="alin">
-      <div class="espace">
-        <label class="lblText">Nome *</label>
-        <input type="text">
-      </div>
-      <div class="espace">
-          <label class="lblText">Sobrenome</label>
-          <input type="text">
-      </div>
-      <div class="espace">
-          <label class="lblText">Endereço</label>
-          <input type="text">
-      </div>
-      <div class="espace">
-          <label class="lblText">CEP *</label>
-          <input type="text">
-      </div>
-      <div class="espace">
-        <label class="lblText">CPF *</label>
-        <input type="password">
-      </div>
-      <div class="espace">
-          <label class="lblText">Senha *</label>
-          <input type="password">
-        </div>
-      <div class="espace">
-          <label class="lblText">Confirmar Senha *</label>
-          <input type="password">
-        </div>
-        <button ion-button color="primary" class="btnAcesso">Salvar</button>
-        <button ion-button class="btnCancela" (click)="onLogin()">Cancelar</button>
-    </div>
+  <ion-list col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 text-center>
+    <form (submit)="verifyForm()">
+      <ion-item>
+        <ion-label floating>{{'Nome' | translate}}</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>{{'Sobrenome' | translate}}</ion-label>
+          <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>{{'Endereço' | translate}}</ion-label>
+          <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>{{'CEP' | translate}}</ion-label>
+          <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>{{'CPF' | translate}}</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>{{'Senha' | translate}}</ion-label>
+          <ion-input type="password"></ion-input>
+        </ion-item>
+      <ion-item>
+          <ion-label floating>{{'Confirmar Senha' | translate}}</ion-label>
+          <ion-input type="password"></ion-input>
+      </ion-item>
+      <button ion-button block color="primary">Salvar</button>
+    </form>
+    <button ion-button block color="danger" (click)="onLogin()">Cancelar</button>
+  </ion-list>
 </ion-content>

@@ -13,19 +13,23 @@
 </ion-header>
 
 
-<ion-content class="imageHere" padding>
-  <div col-8>
-      <h1 class="textoPrinc">ControlBOX</h1>
-    <ion-item>
-      <ion-label class="lblUser">Usuario</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <div class="espaceBtn">
-      <label class="lblPass">Senha</label>
-      <input type="password">
-    </div>
-    <button ion-button block color="primary" class="btnAcesso" (click)="onBusca()">Logar</button>
-    <button ion-button block class="btnRegistra" (click)="onRegistra()">Registre-se</button>
-    <p class="textoBar">Entre com seu usuario e senha, se não tiver cadastre-se agora!</p>
-  </div>
+<ion-content padding>
+  <ion-list col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 text-center>
+    <ion-icon>
+        <h1>ControlBOX</h1>
+    </ion-icon>
+    <form (submit)="onBusca()">
+      <ion-item>
+        <ion-label floating>{{ 'USUARIO' | translate}}</ion-label>
+        <ion-input type="email" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>{{'SENHA' | translate}}</ion-label>
+        <ion-input type="password"></ion-input>
+      </ion-item>
+        <button ion-button block>{{ 'LOGIN' | translate }}</button>
+    </form>
+        <button ion-button block color="danger" (click)="onRegistra()">{{ 'REGISTRAR-SE' | translate }}</button>
+        <p>Entre com seu usuario e senha, se não tiver cadastre-se agora!</p>
+  </ion-list>
 </ion-content>

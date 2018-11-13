@@ -1,3 +1,6 @@
 page-login {
-
+  .back{
+    -webkit-backface-visibility: visible;  /* Chrome, Safari, Opera */
+    backface-visibility: visible;
+}
 }

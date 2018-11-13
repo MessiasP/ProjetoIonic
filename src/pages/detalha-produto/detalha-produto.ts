@@ -18,15 +18,11 @@ export class DetalhaProdutoPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad DetalhaProdutoPage');
-  }
-
   onBusca():void {
-    this.navCtrl.push('BuscaPage');
+    this.navCtrl.setRoot('BuscaPage');
   }
 
   onResumo():void {
-    this.navCtrl.push('ResumoPage');
+    this.navCtrl.setRoot('ResumoPage');
   }
 }

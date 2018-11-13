@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the CadastraProdutoPage page.
@@ -15,15 +15,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CadastraProdutoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CadastraProdutoPage');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public menuCtrl: MenuController) {
   }
 
   onBusca():void {
-    this.navCtrl.push('BuscaPage');
+    this.navCtrl.setRoot('BuscaPage');
   }
+
+  ionViewCanEnter(){
+    //HABILITA MENU CASE F5
+    this.menuCtrl.enable(true);
+   }
 
 }

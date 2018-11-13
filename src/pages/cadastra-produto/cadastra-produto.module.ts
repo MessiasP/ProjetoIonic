@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CadastraProdutoPage } from './cadastra-produto';
 import { TranslateModule } from '@ngx-translate/core';
+
+import { CadastraProdutoPage } from './cadastra-produto';
 
 @NgModule({
   declarations: [

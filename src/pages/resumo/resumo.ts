@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 /**
  * Generated class for the ResumoPage page.
@@ -15,18 +15,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ResumoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ResumoPage');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public menuCtrl: MenuController) {
   }
 
   onPagamento():void {
-    this.navCtrl.push('PagamentoPage');
+    this.navCtrl.setRoot('PagamentoPage');
   }
   onBusca():void {
-    this.navCtrl.push('BuscaPage');
+    this.navCtrl.setRoot('BuscaPage');
   }
+
+  ionViewCanEnter(){
+    //HABILITA MENU CASE F5
+    this.menuCtrl.enable(true);
+   }
 
 }

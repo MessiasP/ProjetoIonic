@@ -13,3 +13,5 @@ import { RegistraPage } from './registra';
   ],
 })
 export class RegistraPageModule {}
+
+//FALTA A IMPORT DO HEADER

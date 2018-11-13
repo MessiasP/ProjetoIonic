@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, MenuController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 
 export interface Slide {
@@ -15,13 +15,15 @@ export class HomePage {
   //showSkip = true;
   slides: Slide[];
 
-  constructor(public navCtrl: NavController, translate : TranslateService) {
+  constructor(
+    public navCtrl: NavController,
+    translate : TranslateService,
+    public menuCtrl: MenuController) {
      translate.get([
        "SLIDE_FIRST",
        "SLIDE_SECUND"
      ]).subscribe(
         (values) => {
-          console.log("AQUI DOIDAO", values);
 
             this.slides = [
 
@@ -39,12 +41,13 @@ export class HomePage {
 
   }
 
-  onSlideChangeStart(slider) {
-  //  this.showSkip = !slider.isEnd();
-  }
+  ionViewDidEnter(){
+    //HABILITA MENU CASE F5
+    this.menuCtrl.enable(false);
+   }
 
   onLogin():void {
-    this.navCtrl.push('LoginPage');
+    this.navCtrl.setRoot('LoginPage');
   }
 
 

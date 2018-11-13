@@ -18,12 +18,8 @@ export class RegistraPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegistraPage');
-  }
-
   onLogin():void {
-    this.navCtrl.push('LoginPage');
+    this.navCtrl.setRoot('LoginPage');
   }
 
 }

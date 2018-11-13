@@ -1,9 +1,19 @@
-<ion-menu [content]="myContent">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>novo produto</ion-title>
-      </ion-toolbar>
-    </ion-header>
+<ion-menu [content]="myContent"  enabled="false">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>MENU</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button ion-item *ngFor="let p of pages" (click)="openPage(p)" menuClose>
+        {{ p.title }}
+      </button>
+    </ion-list>
+  </ion-content>
+
 </ion-menu>
 
 <ion-nav #myContent [root]="rootPage" ></ion-nav>

@@ -1,44 +1,63 @@
 <ion-header>
-
   <ion-navbar>
-    <ion-title>Catalogo</ion-title>
-  </ion-navbar>
 
+      <button ion-button menuToggle icon-only persistent="false">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+
+      <ion-title text-center>CATALOGO</ion-title>
+
+  </ion-navbar>
 </ion-header>
 
+<ion-content>
+  <ion-list  padding text-center>
 
-<ion-content padding>
-  <ion-list text-center>
-    <h4>Escolha o produto desejado!</h4>
-  <form (submit)="searchProduto()" >
+    <h4>Encontre o produto desejado!</h4>
+
+    <form (submit)="searchProduto()" >
+
       <ion-item class="espace">
-        <ion-label floating>{{'CODIGO' | translate}}</ion-label>
-        <ion-input type="text"></ion-input>
+          <ion-label floating>{{'CODIGO' | translate}}</ion-label>
+          <ion-input type="text"></ion-input>
       </ion-item>
+
       <ion-item class="espace">
         <ion-label floating>{{'MARCA' | translate}}</ion-label>
         <ion-input type="text"></ion-input>
-      </ion-item>
+      </ion-item><br><br>
+
       <button ion-button block color="primary">{{'BUSCAR' | translate}}</button>
-  </form>
-  <button ion-button block color="primary" (click)="onDetalhaProduto()">{{'DETALHAR' | translate}}</button>
-  <button ion-button block color="green" (click)="onCadastraProduto()">{{'NOVO PRODUTO' | translate}}</button>
-</ion-list>
-    <table>
-      <tr>
-        <th>Cod</th>
-        <th>Nome</th>
-        <th>Valor</th>
-      </tr>
-      <tr>
-        <td>123</td>
-        <td>Coca-cola</td>
-        <td>3,50</td>
-      </tr>
-      <tr>
-        <td>311</td>
-        <td>Jack Daniel's</td>
-        <td>94,00</td>
-      </tr>
-    </table>
+
+    </form>
+
+  </ion-list>
+
+  <ion-card>
+    <ion-item no-padding>
+
+      <ion-avatar item-left text-center (click)="onDetalhaProduto()">
+        <p>123</p>
+        <img src="../../assets/imgs/coca.jpg">
+      </ion-avatar>
+        <label>Coca-cola</label>
+      <label class="valor">R$ 7,00</label>
+      <p>2 litros</p>
+
+    </ion-item>
+  </ion-card>
+  <ion-card>
+      <ion-item no-padding>
+
+        <ion-avatar item-left text-center (click)="onDetalhaProduto()">
+          <p>123</p>
+          <img src="../../assets/imgs/working-laptop.jpg">
+        </ion-avatar>
+          <label>Notebook</label>
+        <label class="valor">R$ 800,00</label>
+        <p>Asus</p>
+
+      </ion-item>
+    </ion-card>
+
 </ion-content>

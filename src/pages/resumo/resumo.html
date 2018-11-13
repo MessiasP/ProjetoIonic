@@ -1,44 +1,55 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Carrinho</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle icon-only persistent="false">
+            <ion-icon name="menu"></ion-icon>
+          </button>
+
+          <ion-title text-center>CARRINHO</ion-title>
+      </ion-navbar>
 
 </ion-header>
 
 <!--
-COLOCAR ITEM DE CARRINHO, alterar pra ficar na linha do title;
 
+COLOCAR ITEM DE CARRINHO NA PAGE DE IR PARA O CARRINHO;
 
 -->
 
-<ion-content class="imageHere" padding>
-      <table class="tabelaBusca">
-        <tr>
-          <th>Cod</th>
-          <th>Nome</th>
-          <th>Valor</th>
-        </tr>
-        <tr>
-          <td>123</td>
-          <td>Coca-cola</td>
-          <td>R$ 3,50</td>
-        </tr>
-        <tr>
-          <td>311</td>
-          <td>Jack Daniel's</td>
-          <td>R$ 94,00</td>
-        </tr>
-        <tr>
-          <td>Total</td>
-          <td>-------------</td>
-          <td>R$ 97,50</td>
-        </tr>
-      </table>
-    <ion-list>
+<ion-content>
+
+    <ion-list  padding>
       <button ion-button block color="primary" (click)="onPagamento()">PAGAR</button>
       <button ion-button block color="primary" (click)="onBusca()">Continuar comprando</button>
       <button ion-button block color="danger">Excluir do Carrinho</button>
       <button ion-button block color="danger" (click)="onBusca()">Desistir da Compra</button>
     </ion-list>
+
+    <ion-card>
+      <ion-item no-padding>
+
+        <ion-avatar item-left text-center (click)="onDetalhaProduto()">
+          <p>123</p>
+          <img src="../../assets/imgs/coca.jpg">
+        </ion-avatar>
+          <label>Coca-cola</label>
+        <label class="valor">R$ 7,00</label>
+        <p>2 litros</p>
+
+      </ion-item>
+    </ion-card>
+    <ion-card>
+        <ion-item no-padding>
+
+          <ion-avatar item-left text-center (click)="onDetalhaProduto()">
+            <p>123</p>
+            <img src="../../assets/imgs/working-laptop.jpg">
+          </ion-avatar>
+            <label>Notebook</label>
+          <label class="valor">R$ 800,00</label>
+          <p>Asus</p>
+
+        </ion-item>
+      </ion-card>
+
 </ion-content>

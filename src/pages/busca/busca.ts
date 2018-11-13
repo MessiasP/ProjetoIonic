@@ -1,12 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the BuscaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -15,18 +8,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class BuscaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public menuCtrl: MenuController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad BuscaPage');
+  onDetalhaProduto(): void {
+    this.navCtrl.setRoot('DetalhaProdutoPage');
+  }
+  onCadastraProduto(): void {
+    this.navCtrl.setRoot('CadastraProdutoPage');
   }
 
-  onDetalhaProduto():void {
-    this.navCtrl.push('DetalhaProdutoPage');
-  }
-  onCadastraProduto():void {
-    this.navCtrl.push('CadastraProdutoPage');
-  }
+  ionViewDidEnter(){
+    //HABILITA MENU CASE F5
+    this.menuCtrl.enable(true);
+   }
 
 }

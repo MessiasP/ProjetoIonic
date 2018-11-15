@@ -1,15 +1,18 @@
 <ion-header>
   <ion-navbar>
+
       <ion-title>
         CONTROL-BOX
       </ion-title>
     <ion-buttons end>
         <button ion-button color="primary" class="btnAcesso" (click)="onLogin()">Acessar</button>
     </ion-buttons>
+
   </ion-navbar>
 </ion-header>
 
 <ion-content no-bounce>
+
    <ion-slides pager="true">
     <ion-slide  *ngFor="let slide of slides">
       <h1>O controle do seu negocio na palma da mão!</h1>
@@ -17,4 +20,5 @@
       <h2>Não espere acontecer, faça você MESMO!</h2>
     </ion-slide>
   </ion-slides>
+
 </ion-content>

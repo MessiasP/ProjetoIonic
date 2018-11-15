@@ -1,3 +1,4 @@
+import { CONFIG_FIREBASE } from './../config/config';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -17,7 +21,8 @@ import { HomePage } from '../pages/home/home';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    TranslateModule.forChild()
+    TranslateModule.forChild(),
+    AngularFireModule.initializeApp(CONFIG_FIREBASE.firebase)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -28,7 +33,8 @@ import { HomePage } from '../pages/home/home';
     StatusBar,
     SplashScreen,
     TranslateService,
-    TranslateStore
+    TranslateStore,
+    AngularFireAuth
   ]
 })
 export class AppModule {}

@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ToastController } from 'ionic-angular';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireAuth } from 'angularfire2/auth';
+import { UserLogin } from './user.login.model';
 
 @IonicPage()
 @Component({
@@ -15,19 +11,38 @@ import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angul
 })
 export class LoginPage {
 
+  userLogin: UserLogin;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public menuCtrl: MenuController) {
+    public menuCtrl: MenuController,
+    private angularFireAuth: AngularFireAuth,
+    private toast: ToastController) {
+      this.userLogin = new UserLogin();
   }
 
-  onBusca():void {
-    this.navCtrl.setRoot('BuscaPage');
-   // this.menuCtrl.enable(true);
+  authLogin() {
+
+    // this.angularFireAuth.authState.subscribe( result => {
+    //   this.toast.create({
+    //     message: 'Bem vindo ao APP_NAME',
+    //     duration: 3000
+    //   }).present();
+    // });
+
+    console.log('OBJ: ', this.userLogin);
+    this.angularFireAuth.auth.signInWithEmailAndPassword(this.userLogin.email, this.userLogin.senha).then( sucess => {
+      console.log(" FOII: ", sucess );
+      this.navCtrl.setRoot('BuscaPage');
+      }).catch(fail => {
+        console.log("NAO FOI: ", fail);
+      })
   }
 
-  onRegistra():void {
+  onRegistro():void {
     this.navCtrl.push('RegistraPage');
+   // this.menuCtrl.enable(true);
   }
 
 }

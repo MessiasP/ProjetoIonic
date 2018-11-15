@@ -11,7 +11,7 @@
 
 <ion-content class="imageHere" padding>
   <ion-list text-center>
-    <form (submit)="verifyForm()">
+    <!-- <form > -->
       <ion-item>
         <ion-label floating>{{'Nome' | translate}}</ion-label>
         <ion-input type="text"></ion-input>
@@ -40,8 +40,8 @@
           <ion-label floating>{{'Confirmar Senha' | translate}}</ion-label>
           <ion-input type="password"></ion-input>
       </ion-item><br><br>
-      <button ion-button block color="primary">Salvar</button>
-    </form>
+      <button ion-button block color="primary" (click)="verifyForm()">Salvar</button>
+    <!-- </form> -->
     <button ion-button block color="danger" (click)="onLogin()">Cancelar</button>
   </ion-list>
 </ion-content>

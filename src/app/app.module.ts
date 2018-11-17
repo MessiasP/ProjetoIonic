@@ -12,6 +12,7 @@ import { HomePage } from '../pages/home/home';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { UserService } from '../providers/user/user.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forChild(),
-    AngularFireModule.initializeApp(CONFIG_FIREBASE.firebase)
+    AngularFireModule.initializeApp(CONFIG_FIREBASE)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +35,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
     SplashScreen,
     TranslateService,
     TranslateStore,
-    AngularFireAuth
+    AngularFireAuth,
+    UserService
   ]
 })
 export class AppModule {}

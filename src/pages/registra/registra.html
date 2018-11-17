@@ -9,16 +9,23 @@
 </ion-header>
 
 
-<ion-content class="imageHere" padding>
+<ion-content padding>
+  <h1 text-center>
+    <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon>
+  </h1>
   <ion-list text-center>
-    <!-- <form > -->
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
       <ion-item>
         <ion-label floating>{{'Nome' | translate}}</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="name"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label floating>{{'Sobrenome' | translate}}</ion-label>
           <ion-input type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>{{'E-mail' | translate}}</ion-label>
+          <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label floating>{{'Endereço' | translate}}</ion-label>
@@ -30,18 +37,18 @@
       </ion-item>
       <ion-item>
         <ion-label floating>{{'CPF' | translate}}</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="text"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label floating>{{'Senha' | translate}}</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" formControlName="password"></ion-input>
         </ion-item>
       <ion-item>
           <ion-label floating>{{'Confirmar Senha' | translate}}</ion-label>
-          <ion-input type="password"></ion-input>
+          <ion-input type="password" formControlName="passwordC"></ion-input>
       </ion-item><br><br>
-      <button ion-button block color="primary" (click)="verifyForm()">Salvar</button>
-    <!-- </form> -->
+      <button ion-button block color="primary" type="submit" [disabled]="signupForm.invalid">Salvar</button>
+    </form>
     <button ion-button block color="danger" (click)="onLogin()">Cancelar</button>
   </ion-list>
 </ion-content>

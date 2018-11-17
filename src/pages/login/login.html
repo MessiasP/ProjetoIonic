@@ -9,9 +9,11 @@
 
 <ion-content padding>
   <ion-list text-center>
+
     <ion-icon>
         <h1>ControlBOX</h1>
     </ion-icon>
+
       <ion-item>
         <ion-label floating>{{ 'USUARIO' | translate}}</ion-label>
         <ion-input
@@ -20,15 +22,18 @@
           [(ngModel)]="userLogin.email">
         </ion-input>
       </ion-item>
+
       <ion-item>
         <ion-label floating>{{'SENHA' | translate}}</ion-label>
         <ion-input
           type="password"
-          [(ngModel)]="userLogin.senha">
+          [(ngModel)]="userLogin.password">
         </ion-input>
       </ion-item><br><br>
+
         <button ion-button block (click)="authLogin()">{{ 'LOGIN' | translate }}</button>
         <button ion-button block color="danger" (click)="onRegistro()">{{ 'REGISTRAR-SE' | translate }}</button>
         <p>Entre com seu usuario e senha, se não tiver cadastre-se agora!</p>
+
   </ion-list>
 </ion-content>

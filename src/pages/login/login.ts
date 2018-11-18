@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ToastController, AlertController } from 'ionic-angular';
 
 import { UserLogin } from '../Models/user.login.model';
 import { UserService } from '../../providers/user/user.service';
@@ -18,20 +18,26 @@ export class LoginPage {
     public navParams: NavParams,
     public menuCtrl: MenuController,
     private userService: UserService,
-    private toast: ToastController) {
+    private toast: ToastController,
+    private AlertCtrl: AlertController) {
 
       this.userLogin = new UserLogin();
+
+      this.userLogin.email = null;
+      this.userLogin.password = null;
 
     }
 
   authLogin() {
-
-  this.userService.signIn(this.userLogin).then( sucess => {
-      this.navCtrl.setRoot('BuscaPage');
+    if (this.userLogin.email != null &&
+        this.userLogin.password != null) {
+      return this.userService.signIn(this.userLogin).then( sucess => {
+        this.navCtrl.setRoot('BuscaPage');
       }).catch(fail => {
         this.showToast(fail.code);
-
-      })
+      });
+    }
+      return this.presentAlert();
   }
 
   private showToast(code: string): void {
@@ -58,6 +64,23 @@ export class LoginPage {
   onRegistro():void {
     this.navCtrl.push('RegistraPage');
    // this.menuCtrl.enable(true);//_____________________TIRAR ISSO AQUI__________________________________
+  }
+
+  presentAlert() {
+    if (this.userLogin.email === null) {
+      const alert = this.AlertCtrl.create({
+        title: "Digite um Email!",
+        buttons: ["Voltar"]
+      });
+      alert.present();
+    }
+    if (this.userLogin.password === null) {
+      const alert = this.AlertCtrl.create({
+        title: "Digite uma Senha!",
+        buttons: ["Voltar"]
+      });
+      alert.present();
+    }
   }
 
 }

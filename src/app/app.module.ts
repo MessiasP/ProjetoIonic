@@ -1,4 +1,3 @@
-import { CONFIG_FIREBASE } from './../config/config';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,9 +9,12 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 
+import { CONFIG_FIREBASE } from './../config/config';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { UserService } from '../providers/user/user.service';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { UserDatabase } from './../providers/user/userDatabase.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { UserService } from '../providers/user/user.service';
     TranslateService,
     TranslateStore,
     AngularFireAuth,
-    UserService
+    UserService,
+    AngularFireDatabase,
+    UserDatabase,
   ]
 })
 export class AppModule {}

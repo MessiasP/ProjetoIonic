@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -18,12 +19,14 @@ export class MyApp {
   constructor(
     platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen) {
+    splashScreen: SplashScreen,
+    private afAuth: AngularFireAuth,
+  ) {
 
     this.pages = [
       {title: 'NOVO PRODUTO', component: 'CadastraProdutoPage'},
       {title: 'COMANDAS', component: 'ResumoPage'},
-      {title: 'LOGOUT', component: HomePage}
+      {title: 'LOGOUT', component: 'signOut()'}
     ];
 
     platform.ready().then(() => {
@@ -34,6 +37,9 @@ export class MyApp {
     });
   }
 
+  signOut(): Promise<void> {
+		return this.afAuth.auth.signOut();
+	}
   openPage(page: {title: string, component: any}): void {
     this.nav.setRoot(page.component);
   }

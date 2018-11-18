@@ -1,54 +1,61 @@
 <ion-header>
-
-  <ion-navbar>
-
-    <ion-title>REGISTRAR-SE</ion-title>
-
-  </ion-navbar>
-
+  <ion-navbar> <ion-title>REGISTRAR-SE</ion-title> </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <h1 text-center>
-    <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon>
-  </h1>
   <ion-list text-center>
-    <form [formGroup]="signupForm" (ngSubmit)="onSubmit(); $event.preventDefault()">
-      <ion-item>
-        <ion-label floating>{{'Nome' | translate}}</ion-label>
-        <ion-input type="text" formControlName="name"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Sobrenome' | translate}}</ion-label>
-          <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'E-mail' | translate}}</ion-label>
-          <ion-input type="email" formControlName="email"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Endereço' | translate}}</ion-label>
-          <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'CEP' | translate}}</ion-label>
-          <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>{{'CPF' | translate}}</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Senha' | translate}}</ion-label>
-          <ion-input type="password" formControlName="password"></ion-input>
-        </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Confirmar Senha' | translate}}</ion-label>
-          <ion-input type="password" formControlName="passwordC"></ion-input>
-      </ion-item><br><br>
-      <button ion-button block color="primary" type="submit" [disabled]="signupForm.invalid">Salvar</button>
-    </form>
-    <button ion-button block color="danger" (click)="onLogin()">Cancelar</button>
+    <h1 text-center>
+      <ion-icon class="auth-icon" name="person-add" color="primary"></ion-icon>
+    </h1>
+    <ion-item>
+      <ion-label floating>{{ "Nome" | translate }}</ion-label>
+      <ion-input type="text" #nome="ngModel" [(ngModel)]="userLogin.nome">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ "Sobrenome" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="userLogin.sobrenome"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ "E-mail" | translate }}</ion-label>
+      <ion-input type="email" [(ngModel)]="userLogin.email"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ "Endereço" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="userLogin.endereco"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ "CEP" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="userLogin.cep"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ "CPF" | translate }}</ion-label>
+      <ion-input type="text" [(ngModel)]="userLogin.cpf"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ "Senha" | translate }}</ion-label>
+      <ion-input type="password" [(ngModel)]="userLogin.password"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>{{ "Confirmar Senha" | translate }}</ion-label>
+      <ion-input type="password" [(ngModel)]="passwordC"> </ion-input>
+    </ion-item>
+
+    <br /><br />
+
+    <button ion-button block color="primary" type="submit" (click)="onSubmit()">
+      Salvar
+    </button>
+
+    <button ion-button block color="danger" (click)="onLogin()">
+      Cancelar
+    </button>
   </ion-list>
 </ion-content>

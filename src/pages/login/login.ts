@@ -26,32 +26,43 @@ export class LoginPage {
 
   authLogin() {
 
-    console.log('obj p/ salar: ', this.userLogin);
+    console.log('obj p/ salar: ', this.userLogin);//_____________________TIRAR ISSO AQUI__________________________________
 
   this.userService.signIn(this.userLogin).then( sucess => {
-      console.log(" FOII: ", sucess );
+      console.log(" FOII: ", sucess );//_____________________TIRAR ISSO AQUI__________________________________
       this.navCtrl.setRoot('BuscaPage');
       }).catch(fail => {
-        console.log("NAO FOI: ", fail.code);
+        console.log("NAO FOI: ", fail.code);//_____________________TIRAR ISSO AQUI__________________________________
         this.showToast(fail.code);
 
       })
   }
 
   private showToast(code: string): void {
-    console.log(" code: ", code );
-    if (code === 'auth/invalid-email'){
+    console.log(" code: ", code );//_____________________TIRAR ISSO AQUI__________________________________
+    if (code === 'auth/invalid-email') {
       this.toast.create({
         message: `Digite um usuario valido!`,
         duration: 5000
       }).present()
     }
-
+    if (code === 'auth/wrong-password') {
+      this.toast.create({
+        message: `Senha invalida!`,
+        duration: 5000
+      }).present()
+    }
+    if (code === 'auth/user-not-found') {
+      this.toast.create({
+        message: `Usuario não cadastrado!`,
+        duration: 5000
+      }).present()
+    }
   }
 
   onRegistro():void {
     this.navCtrl.push('RegistraPage');
-   // this.menuCtrl.enable(true);
+   // this.menuCtrl.enable(true);//_____________________TIRAR ISSO AQUI__________________________________
   }
 
 }

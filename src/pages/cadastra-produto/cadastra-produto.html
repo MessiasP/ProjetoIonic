@@ -1,40 +1,50 @@
 <ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only persistent="false">
+      <ion-icon name="menu"></ion-icon>
+    </button>
 
-    <ion-navbar>
-
-        <button ion-button menuToggle icon-only persistent="false">
-            <ion-icon name="menu"></ion-icon>
-          </button>
-
-          <ion-title text-center>NOVO PRODUTO</ion-title>
-
-    </ion-navbar>
-
+    <ion-title text-center>NOVO PRODUTO</ion-title>
+  </ion-navbar>
 </ion-header>
-
 
 <ion-content padding>
   <ion-list>
-    <form (submit)="onSave()">
-      <ion-item>
-        <ion-label floating>Codigo</ion-label>
-        <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Nome' | translate}}</ion-label>
-          <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Valor' | translate}}</ion-label>
-          <ion-input type="text"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Quantidade' | translate}}</ion-label>
-          <ion-input type="text"></ion-input>
-      </ion-item><br><br>
-      <button ion-button block color="primary">Salvar</button>
-    </form>
+    <ion-item>
+      <ion-label floating>{{ Codígo de Barra | translate }}</ion-label>
+      <ion-input [(ngModel)]="produto.codigoBarra" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ "Nome" | translate }}</ion-label>
+      <ion-input [(ngModel)]="produto.nome" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ "Marca" | translate }}</ion-label>
+      <ion-input [(ngModel)]="produto.marca" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ "Valor de Compra" | translate }}</ion-label>
+      <ion-input [(ngModel)]="produto.valorCompra" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ "Valor de Venda" | translate }}</ion-label>
+      <ion-input [(ngModel)]="produto.valorVenda" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ "Quantidade" | translate }}</ion-label>
+      <ion-input [(ngModel)]="produto.quantidade" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{ "Descrição" | translate }}</ion-label>
+      <ion-input
+        [(ngModel)]="produto.descricao"
+        type="text"
+      ></ion-input> </ion-item
+    ><br /><br />
+    <button ion-button block color="primary" (click)="save()" >Salvar</button>
     <button ion-button block color="primary">Inserir imagem</button>
-    <button ion-button block color="danger" (click)="onBusca()">Cancelar</button>
+    <button ion-button block color="danger" (click)="onBusca()">
+      Cancelar
+    </button>
   </ion-list>
 </ion-content>

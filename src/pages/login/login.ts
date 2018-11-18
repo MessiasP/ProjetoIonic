@@ -26,20 +26,15 @@ export class LoginPage {
 
   authLogin() {
 
-    console.log('obj p/ salar: ', this.userLogin);//_____________________TIRAR ISSO AQUI__________________________________
-
   this.userService.signIn(this.userLogin).then( sucess => {
-      console.log(" FOII: ", sucess );//_____________________TIRAR ISSO AQUI__________________________________
       this.navCtrl.setRoot('BuscaPage');
       }).catch(fail => {
-        console.log("NAO FOI: ", fail.code);//_____________________TIRAR ISSO AQUI__________________________________
         this.showToast(fail.code);
 
       })
   }
 
   private showToast(code: string): void {
-    console.log(" code: ", code );//_____________________TIRAR ISSO AQUI__________________________________
     if (code === 'auth/invalid-email') {
       this.toast.create({
         message: `Digite um usuario valido!`,

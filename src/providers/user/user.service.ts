@@ -17,7 +17,6 @@ export class UserService {
   }
 
   createUser(userLogin: UserLogin) {
-    console.log('SERVICE, USER.Service: ', userLogin);
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(userLogin.email, userLogin.password);
 
   }

@@ -21,16 +21,9 @@ export class UserDatabase {
     return this.aFDatabase;
   }
 
-  public createUpdateUser(userLogin: UserLogin) {
-    console.log("SERVICE DATABASE, OBJETO: ", userLogin);
-
-    // if (userLogin.uid != null) {
-    //   console.log("SERVICE DATABASE, TEM ID!!");
-
-    //   return this.alunoList.update(userLogin.uid, userLogin);
-    // }
-    console.log("SERVICE DATABASE, NÃO TEM ID!!");
-    return this.alunoList.push(userLogin);
+  public async createUpdateUser(userLogin: UserLogin, uid: string) {
+    userLogin.password = null;
+      return await this.alunoList.update(uid, userLogin);
   }
 
   // public delete(userLogin: UserLogin) {

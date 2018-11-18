@@ -26,7 +26,7 @@ export class MyApp {
     this.pages = [
       {title: 'NOVO PRODUTO', component: 'CadastraProdutoPage'},
       {title: 'COMANDAS', component: 'ResumoPage'},
-      {title: 'LOGOUT', component: 'signOut()'}
+      {title: 'LOGOUT', component: this.rootPage }
     ];
 
     platform.ready().then(() => {

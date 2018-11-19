@@ -2,12 +2,12 @@ import { Injectable } from "@angular/core";
 
 import { AngularFireDatabase } from 'angularfire2/database';
 
-import { UserLogin } from '../../pages/Models/user.login.model';
+import { Produto } from './../../pages/Models/produto.model';
 
 @Injectable()
-export class UserDatabaseService {
+export class ProdutoService {
 
-  private userList = this.aFDatabase.list<UserLogin>('/Users');
+  private productList = this.aFDatabase.list<Produto>('/Produtos');
 
   constructor(private aFDatabase: AngularFireDatabase){}
 
@@ -19,12 +19,11 @@ export class UserDatabaseService {
     return this.aFDatabase;
   }
 
-  public async createUpdateUser(userLogin: UserLogin, uid: string) {
-    userLogin.password = null;
-      return await this.userList.update(uid, userLogin);
+  public async create( produto: Produto ) {
+      return await this.productList.push(produto);
   }
 
-  public delete(uid: string) {
+  public delete( uid: string ) {
     return this.aFDatabase.object(uid).remove();
   }
 

@@ -1,5 +1,5 @@
 export class Produto {
-  constructor(
+  constructor (
     public codigoBarra?: string,
     public nome?: string,
     public marca?: string,

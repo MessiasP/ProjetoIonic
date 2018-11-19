@@ -1,17 +1,15 @@
-import { AngularFireAuth } from 'angularfire2/auth';
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Component, ViewChild } from "@angular/core";
+import { Nav, Platform } from "ionic-angular";
+import { StatusBar } from "@ionic-native/status-bar";
+import { SplashScreen } from "@ionic-native/splash-screen";
 
-import { HomePage } from '../pages/home/home';
+import { HomePage } from "../pages/home/home";
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: "app.html"
 })
 export class MyApp {
-
-  @ViewChild(Nav) nav: Nav
+  @ViewChild(Nav) nav: Nav;
   pages: any;
   rootPage = HomePage;
   value: boolean = false;
@@ -20,13 +18,11 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private afAuth: AngularFireAuth,
   ) {
-
     this.pages = [
-      {title: 'NOVO PRODUTO', component: 'CadastraProdutoPage'},
-      {title: 'COMANDAS', component: 'ResumoPage'},
-      {title: 'LOGOUT', component: this.rootPage }
+      { title: "NOVO PRODUTO", component: "CadastraProdutoPage" },
+      { title: "COMANDAS", component: "ResumoPage" },
+      { title: "LOGOUT", component: this.rootPage }
     ];
 
     platform.ready().then(() => {
@@ -37,12 +33,10 @@ export class MyApp {
     });
   }
 
-  signOut(): Promise<void> {
-		return this.afAuth.auth.signOut();
-	}
-  openPage(page: {title: string, component: any}): void {
+  // signOut(): Promise<void> {
+  // 	return this.afAuth.auth.signOut();
+  // }
+  openPage(page: { title: string; component: any }): void {
     this.nav.setRoot(page.component);
   }
-
 }
-

@@ -1,28 +1,49 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController } from 'ionic-angular';
-
-/**
- * Generated class for the CadastraProdutoPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { NavController, NavParams, MenuController, ToastController, IonicPage } from 'ionic-angular';
+import { Produto } from '../Models/produto.model';
+import { ProdutoService } from '../../providers/produto/produto.service';
 
 @IonicPage()
 @Component({
   selector: 'page-cadastra-produto',
   templateUrl: 'cadastra-produto.html',
 })
-export class CadastraProdutoPage {
+export class  CadastraProdutoPage {
+
+  uid: string;
+  produto: Produto;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public menuCtrl: MenuController) {
+    public menuCtrl: MenuController,
+    private produtoService: ProdutoService,
+    private toast: ToastController,
+  ) {
+
+    this.produto = new Produto();
+    this.uid = null;
   }
 
-  onBusca():void {
+  onSubmit():void {
+    console.log("Produto: ", this.produto);
+
+    this.save();
+
+  }
+
+  save() {
+    this.produtoService.create(this.produto).then( sucess => {
+      console.log("SALVOU", sucess);
+      this.toast.create({
+        message: 'Produto criado com Sucesso!',
+        duration: 3000
+      });
     this.navCtrl.setRoot('BuscaPage');
+    }).catch ( fail => {
+      console.error("ERROR: ", fail);
+
+    });
   }
 
   ionViewCanEnter(){

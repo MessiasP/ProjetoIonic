@@ -1,3 +1,4 @@
+import { ProdutoService } from './../providers/produto/produto.service';
 import { TranslateStore } from '@ngx-translate/core/src/translate.store';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -14,7 +15,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { UserService } from '../providers/user/user.service';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { UserDatabase } from './../providers/user/userDatabase.service';
+import { UserDatabaseService } from './../providers/user/userDatabase.service';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,12 @@ import { UserDatabase } from './../providers/user/userDatabase.service';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     TranslateModule.forChild(),
-    AngularFireModule.initializeApp(CONFIG_FIREBASE)
+    AngularFireModule.initializeApp(CONFIG_FIREBASE),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
   ],
   providers: [
     StatusBar,
@@ -40,7 +41,8 @@ import { UserDatabase } from './../providers/user/userDatabase.service';
     AngularFireAuth,
     UserService,
     AngularFireDatabase,
-    UserDatabase,
+    UserDatabaseService,
+    ProdutoService,
   ]
 })
 export class AppModule {}

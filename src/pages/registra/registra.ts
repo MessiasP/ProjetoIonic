@@ -11,7 +11,7 @@ import { Component } from "@angular/core";
 import { UserLogin } from "./../Models/user.login.model";
 
 import { UserService } from "../../providers/user/user.service";
-import { UserDatabase } from "./../../providers/user/userDatabase.service";
+import { UserDatabaseService } from "./../../providers/user/userDatabase.service";
 
 @IonicPage()
 @Component({
@@ -30,9 +30,9 @@ export class RegistraPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private userService: UserService,
-    private userDatabase: UserDatabase,
+    private userDatabase: UserDatabaseService,
     private toast: ToastController,
-    private AlertCtrl: AlertController
+    private AlertCtrl: AlertController,
   ) {
 
     this.passwordInvalid = true;
@@ -49,7 +49,7 @@ export class RegistraPage {
     this.userLogin.password = null;
   }
 
-  onSubmit() {
+  onSubmit(): void {
     this.verificaForm();
     if (
       this.userLogin.nome != null &&

@@ -7,6 +7,7 @@ import { UserLogin } from "../../model/user/user.login.model";
 
 @Injectable()
 export class UserDatabaseService {
+
   private userList = this.aFDatabase.list<UserLogin>("/Users");
 
   private uid: string;
@@ -24,11 +25,10 @@ export class UserDatabaseService {
     return this.aFDatabase;
   }
 
-  public async createUpdateUser(userLogin: UserLogin) {
-    this.getUid();
-    console.log("Service, uid", this.uid);
+  public createUser( userLogin: UserLogin) {
+    console.log("Service, Obj ", userLogin);
     userLogin.password = null;
-    return await this.userList.update(this.uid, userLogin);
+    return this.userList.push(userLogin);
   }
 
   public delete(uid: string) {

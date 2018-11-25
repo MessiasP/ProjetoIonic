@@ -9,6 +9,7 @@ import {
 } from "ionic-angular";
 
 import { UserLogin } from "../../model/user/user.login.model";
+import { UserService } from "../../providers/user/user.service";
 
 @IonicPage()
 @Component({
@@ -16,13 +17,14 @@ import { UserLogin } from "../../model/user/user.login.model";
   templateUrl: "login.html"
 })
 export class LoginPage {
+
   userLogin: UserLogin;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public menuCtrl: MenuController,
-    // private userService: UserService,
+    private userService: UserService,
     private toast: ToastController,
     private AlertCtrl: AlertController
   ) {
@@ -34,14 +36,14 @@ export class LoginPage {
 
   authLogin() {
     if (this.userLogin.email != null && this.userLogin.password != null) {
-      // return this.userService
-      //   .signIn(this.userLogin)
-      //   .then(sucess => {
+      return this.userService
+        .signIn(this.userLogin)
+        .then(sucess => {
           this.navCtrl.setRoot("BuscaPage");
-      //   })
-      //   .catch(fail => {
-      //     this.showToast(fail.code);
-      //   });
+        })
+        .catch(fail => {
+          this.showToast(fail.code);
+        });
     }
     return this.presentAlert();
   }

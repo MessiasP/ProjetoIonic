@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -16,6 +17,7 @@ import { UserDatabaseService } from '../providers/user-database/user-database.se
 import { ProdutoService } from '../providers/produto/produto.service';
 import { TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
 import { BrMaskerModule } from 'brmasker-ionic-3';
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     HomeModule,
     TranslateModule.forChild(),
     BrMaskerModule,
@@ -44,6 +47,8 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
     ProdutoService,
     TranslateService,
     TranslateStore,
+    AngularFireAuth,
+    AngularFireDatabase,
   ]
 })
 export class AppModule { }

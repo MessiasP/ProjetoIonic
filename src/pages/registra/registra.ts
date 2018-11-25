@@ -1,5 +1,5 @@
-import { UserDatabaseService } from './../../providers/user-database/user-database.service';
 import { FormBuilder } from "@angular/forms";
+import { Component } from "@angular/core";
 import {
   IonicPage,
   NavController,
@@ -8,7 +8,7 @@ import {
   AlertController
 } from "ionic-angular";
 
-import { Component } from "@angular/core";
+import { UserDatabaseService } from './../../providers/user-database/user-database.service';
 
 import { UserService } from "../../providers/user/user.service";
 import { UserLogin } from '../../model/user/user.login.model';
@@ -19,6 +19,8 @@ import { UserLogin } from '../../model/user/user.login.model';
   templateUrl: "registra.html"
 })
 export class RegistraPage {
+  
+  uid: String;
   userLogin: UserLogin;
   passwordC: string;
 
@@ -37,6 +39,8 @@ export class RegistraPage {
     this.passwordInvalid = true;
 
     this.userLogin = new UserLogin();
+
+    this.uid = null;
 
     // VER PORQUE AS VALIDAÇÕES N SAO PEGAS || TROCAR PARA FORMA DO PROFESSOR (GITHUB)
     this.userLogin.nome = null;
@@ -66,7 +70,7 @@ export class RegistraPage {
       .createUser(this.userLogin)
       .then(sucess => {
         console.log("sucess", sucess);
-        this.userDatabase.createUpdateUser(this.userLogin);
+        this.userDatabase.createUser(this.userLogin);
         this.toast.create({
           message: `Cadastro realizado com sucesso!`,
           duration: 3000
@@ -75,7 +79,7 @@ export class RegistraPage {
       })
       .catch(fail => {
         this.showToast(fail.code);
-        console.error("Erro nao tratado: ", fail);
+        console.error("Erro não tratado: ", fail);
       });
   }
 

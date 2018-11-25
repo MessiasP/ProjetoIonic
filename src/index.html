@@ -16,6 +16,22 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
   <!-- cordova.js required for cordova apps (remove if not needed) -->
+
+
+  <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyB_xIVFRD18Ayu-if46Y6PwUgvjiBeDsBo",
+      authDomain: "academico-53c97.firebaseapp.com",
+      databaseURL: "https://academico-53c97.firebaseio.com",
+      projectId: "academico-53c97",
+      storageBucket: "academico-53c97.appspot.com",
+      messagingSenderId: "850998772750"
+    };
+    firebase.initializeApp(config);
+  </script>
+
   <script src="cordova.js"></script>
 
   <!-- un-comment this code to enable service worker

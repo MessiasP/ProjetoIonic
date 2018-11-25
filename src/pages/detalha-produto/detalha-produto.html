@@ -1,34 +1,34 @@
 <ion-header>
-    <ion-navbar>
+  <ion-navbar>
 
-      <button ion-button menuToggle icon-only persistent="false">
-          <ion-icon name="menu"></ion-icon>
-        </button>
+    <button ion-button menuToggle icon-only persistent="false">
+        <ion-icon name="menu"></ion-icon>
+      </button>
 
-        <ion-title text-center>DETALHES</ion-title>
+      <ion-title text-center>DETALHES</ion-title>
 
-      </ion-navbar>
+    </ion-navbar>
 </ion-header>
 
 <!--
-      NAO COLOQUEI FOMULARIO PQ PENSO EM COLOCAR BUTAO ADD PRODUTO NA PAGINA DE BUSCA NA TABELA!
+    NAO COLOQUEI FOMULARIO PQ PENSO EM COLOCAR BUTAO ADD PRODUTO NA PAGINA DE BUSCA NA TABELA!
 
-      MUDAR O BUTAO DE VER CARRINHO PARA O MENU!
+    MUDAR O BUTAO DE VER CARRINHO PARA O MENU!
 
-      MUDAR LABEL PARA VER QUALQUER PRODUTO JUNTO COM A DIV DE IMAGEM
+    MUDAR LABEL PARA VER QUALQUER PRODUTO JUNTO COM A DIV DE IMAGEM
 -->
 <ion-content padding>
-    <ion-list text-center>
-        <h4 class="textoPrinc">Coca-Cola</h4>
-        <div class="item-profile" id="slide1" ></div>
-          <ion-item>
-            <ion-label text-center>Cod do produto: 123</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label text-center>Descrição: 2 Litros</ion-label>
-          </ion-item><br><br>
-            <button ion-button block color="primary">Adicionar ao carrinho</button>
-            <button ion-button block color="primary" (click)="onResumo()">Ver carrinho</button>
-            <button ion-button block color="danger" (click)="onBusca()">Voltar</button>
-    </ion-list>
+  <ion-list text-center>
+      <h4 class="textoPrinc">Coca-Cola</h4>
+      <div class="item-profile" id="slide1" ></div>
+        <ion-item>
+          <ion-label text-center>Cod do produto: 123</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label text-center>Descrição: 2 Litros</ion-label>
+        </ion-item><br><br>
+          <button ion-button block color="primary">Adicionar ao carrinho</button>
+          <button ion-button block color="primary" (click)="onResumo()">Ver carrinho</button>
+          <button ion-button block color="danger" (click)="onBusca()">Voltar</button>
+  </ion-list>
 </ion-content>

@@ -1,39 +1,39 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle icon-only persistent="false">
-          <ion-icon name="menu"></ion-icon>
-        </button>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only persistent="false">
+        <ion-icon name="menu"></ion-icon>
+      </button>
 
-        <ion-title text-center>PAGAMENTO</ion-title>
-    </ion-navbar>
+      <ion-title text-center>PAGAMENTO</ion-title>
+  </ion-navbar>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <form (submit)="onBusca()">
-      <ion-item>
-        <ion-label floating>{{'Nome' | translate}}</ion-label>
-        <ion-input type="text" value="Maria Jose"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Numero do cartao' | translate}}</ion-label>
-          <ion-input type="text" value="9999.9999.9999.9999"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Codigo' | translate}}</ion-label>
-          <ion-input type="text" value="999"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label floating>{{'Data de Validade' | translate}}</ion-label>
-          <ion-input type="text" value="12/2020"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-label floating>{{'Valor pago' | translate}}</ion-label>
-        <ion-input type="text" value="R$ 97,50"></ion-input>
-      </ion-item><br><br>
-        <button ion-button block color="primary">FINALIZAR</button>
-    </form>
-    <button ion-button block color="danger" (click)="onBusca()">CANCELAR</button>
-  </ion-list>
+<ion-list>
+  <form (submit)="onBusca()">
+    <ion-item>
+      <ion-label floating>{{'Nome' | translate}}</ion-label>
+      <ion-input type="text" value="Maria Jose"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>{{'Numero do cartao' | translate}}</ion-label>
+        <ion-input type="text" value="9999.9999.9999.9999"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>{{'Codigo' | translate}}</ion-label>
+        <ion-input type="text" value="999"></ion-input>
+    </ion-item>
+    <ion-item>
+        <ion-label floating>{{'Data de Validade' | translate}}</ion-label>
+        <ion-input type="text" value="12/2020"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>{{'Valor pago' | translate}}</ion-label>
+      <ion-input type="text" value="R$ 97,50"></ion-input>
+    </ion-item><br><br>
+      <button ion-button block color="primary">FINALIZAR</button>
+  </form>
+  <button ion-button block color="danger" (click)="onBusca()">CANCELAR</button>
+</ion-list>
 </ion-content>

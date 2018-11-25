@@ -8,8 +8,7 @@ import {
   AlertController
 } from "ionic-angular";
 
-import { UserLogin } from "../Models/user.login.model";
-import { UserService } from "../../providers/user/user.service";
+import { UserLogin } from "../../model/user/user.login.model";
 
 @IonicPage()
 @Component({
@@ -23,7 +22,7 @@ export class LoginPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public menuCtrl: MenuController,
-    private userService: UserService,
+    // private userService: UserService,
     private toast: ToastController,
     private AlertCtrl: AlertController
   ) {
@@ -35,14 +34,14 @@ export class LoginPage {
 
   authLogin() {
     if (this.userLogin.email != null && this.userLogin.password != null) {
-      return this.userService
-        .signIn(this.userLogin)
-        .then(sucess => {
+      // return this.userService
+      //   .signIn(this.userLogin)
+      //   .then(sucess => {
           this.navCtrl.setRoot("BuscaPage");
-        })
-        .catch(fail => {
-          this.showToast(fail.code);
-        });
+      //   })
+      //   .catch(fail => {
+      //     this.showToast(fail.code);
+      //   });
     }
     return this.presentAlert();
   }

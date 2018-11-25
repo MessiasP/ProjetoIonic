@@ -1,5 +1,37 @@
 page-busca {
-  table {
-    width: 100%;
-  }
+    .card {
+
+        .itemBody {
+            height: 10vh;
+            width: 80%;
+            background-color: rgb(235, 235, 235);
+            color: black;
+        }
+
+        .ionAvatar {
+            width: 10vh;           
+        }
+
+        .itemBody {
+            .lblValor {
+                float: right;
+            }
+        }
+
+        .itemCheckbox {
+            float: right;
+            margin-top: -74px;
+            height: 10vh;
+            width: 8vh;
+            
+        }
+
+        .itemView {
+            float: right;
+            margin-top: -74px;
+            height: 10vh;
+            width: 8vh;
+        
+        }
+    }
 }

@@ -1,3 +1,4 @@
+import { UserDatabaseService } from './../../providers/user-database/user-database.service';
 import { FormBuilder } from "@angular/forms";
 import {
   IonicPage,
@@ -8,10 +9,9 @@ import {
 } from "ionic-angular";
 
 import { Component } from "@angular/core";
-import { UserLogin } from "./../Models/user.login.model";
 
 import { UserService } from "../../providers/user/user.service";
-import { UserDatabaseService } from "./../../providers/user/userDatabase.service";
+import { UserLogin } from '../../model/user/user.login.model';
 
 @IonicPage()
 @Component({
@@ -19,7 +19,6 @@ import { UserDatabaseService } from "./../../providers/user/userDatabase.service
   templateUrl: "registra.html"
 })
 export class RegistraPage {
-  uid: string;
   userLogin: UserLogin;
   passwordC: string;
 
@@ -66,8 +65,8 @@ export class RegistraPage {
     this.userService
       .createUser(this.userLogin)
       .then(sucess => {
-        this.uid = sucess.user.uid;
-        this.userDatabase.createUpdateUser(this.userLogin, this.uid);
+        console.log("sucess", sucess);
+        this.userDatabase.createUpdateUser(this.userLogin);
         this.toast.create({
           message: `Cadastro realizado com sucesso!`,
           duration: 3000

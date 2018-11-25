@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
+
 import { TranslateService } from '@ngx-translate/core';
 
 export interface Slide {
@@ -17,7 +18,7 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    translate : TranslateService,
+    private translate: TranslateService,
     public menuCtrl: MenuController) {
      translate.get([
        "SLIDE_FIRST",

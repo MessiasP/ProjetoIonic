@@ -1,37 +1,51 @@
 page-busca {
-    .card {
-
-        .itemBody {
-            height: 10vh;
-            width: 80%;
-            background-color: rgb(235, 235, 235);
-            color: black;
-        }
-
-        .ionAvatar {
-            width: 10vh;           
-        }
-
-        .itemBody {
-            .lblValor {
-                float: right;
-            }
-        }
-
-        .itemCheckbox {
-            float: right;
-            margin-top: -74px;
-            height: 10vh;
-            width: 8vh;
-            
-        }
-
-        .itemView {
-            float: right;
-            margin-top: -74px;
-            height: 10vh;
-            width: 8vh;
-        
-        }
+  .card {
+    .itemBody {
+      // height: 10vh;
+      width: 80%;
+      background-color: rgb(235, 235, 235);
+      color: black;
     }
+
+    .ionAvatar {
+      width: 10vh;
+    }
+
+    .itemBody {
+      .lblValor {
+        float: right;
+      }
+    }
+
+    .acoes {
+      float: right;
+      margin-top: -13vh;
+      // height: 10vh;
+      width: 40vh;
+    }
+
+    .itemCheckbox {
+      padding: 0;
+      // float: right;
+      // margin-top: -7vh;
+      height: 10vh;
+      width: 4vh;
+    }
+
+    .itemView {
+      padding: 0;
+      float: right;
+      // margin-top: -68px;
+      height: 10vh;
+      width: 6vh;
+    }
+  }
+
+  .iconAdd {
+    position: fixed;
+    right: 0;
+    top: 94%;
+    width: 4em;
+    background-size: 600vh;
+  }
 }

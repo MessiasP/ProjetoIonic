@@ -5,6 +5,10 @@
     </button>
 
     <ion-title text-center>CATALOGO</ion-title>
+
+    <button ion-button icon-only persistent="false" (click)="verifyCheckbox()" end>
+        <ion-icon id="newControl" name="add-circle"></ion-icon>
+    </button>
   </ion-navbar>
 </ion-header>
 
@@ -12,10 +16,10 @@
   <ion-list padding text-center>
     <h4>Encontre o produto desejado!</h4>
 
-    <form (submit)="searchProduto()">
-      <ion-item class="espace">
+    <!-- <form> -->
+      <!-- <ion-item class="espace">
         <ion-label floating>CODIGO</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input [(ngModel)]="produto.codigoBarra" type="text"></ion-input>
       </ion-item>
 
       <ion-item class="espace">
@@ -23,27 +27,36 @@
         <ion-input type="text"></ion-input> </ion-item
       ><br /><br />
 
-      <button ion-button block color="primary">BUSCA</button>
-    </form>
+      <button ion-button block color="primary" (click)="searchProduct()">BUSCA</button> -->
+    <!-- </form> -->
     <br /><br />
   </ion-list>
-  <ion-card class="card" *ngFor="let p of (products | async)">
-    <ion-item class="itemBody">
+  <ion-card class="card" *ngFor="let product of products">
+    <ion-item class="itemBody" col-8 col-sm-8 col-md-10 col-lg-8 col-xl-11>
       
       <ion-avatar class="ionAvatar" item-left text-center>
-        <p>{{ p.codigoBarra }}</p>
+        <p>{{ product.codigoBarra }}</p>
         <h3><img src="../../assets/imgs/working-laptop.jpg" /></h3>
       </ion-avatar>
 
-      <label>{{ p.nome }}</label>
-      <label class="lblValor">R$ {{ p.valorVenda }}</label>
-      <p>{{ p.descricao }}</p>
+      <label>{{ product.nome }}</label>
+      <label class="lblValor">R$ {{ product.valorVenda }}</label>
+      <p>{{ product.descricao }}</p>
     </ion-item>
 
-    <ion-item class="itemView" (click)="onDetalhaProduto()">
-      <ion-icon name="eye"></ion-icon>
+    <ion-item class="acoes" col-4 col-sm-4 col-md-4 col-lg-4 col-xl-2>
+      <ion-item class="itemView" (click)="onDetalhaProduto()">
+        <ion-icon name="eye"></ion-icon>      
+      </ion-item>
+      
+      <!-- <button ion-button icon-only>
+        <ion-icon name="eye"></ion-icon>
+      </button> -->
+
+      <ion-item class="itemCheckbox"> 
+        <ion-checkbox  [(ngModel)]="product.checked"></ion-checkbox> 
+      </ion-item>
     </ion-item>
     
-    <ion-item class="itemCheckbox"> <ion-checkbox></ion-checkbox> </ion-item>
   </ion-card>
 </ion-content>

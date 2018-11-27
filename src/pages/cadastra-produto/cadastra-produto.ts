@@ -29,7 +29,7 @@ export class CadastraProdutoPage {
     private produtoService: ProdutoService,
     private toast: ToastController,
     private loadingCtrl: LoadingController,
-    private AlertCtrl: AlertController,
+    private AlertCtrl: AlertController
   ) {
     this.produto = new Produto();
     // this.produto.key = "1234";
@@ -50,18 +50,20 @@ export class CadastraProdutoPage {
   save() {
     let loading: Loading = this.showLoading();
 
-    this.produtoService.create(this.produto).then( sucess => {
-      console.log("SALVOU", sucess);
-      this.toast.create({
-        message: 'Produto criado com Sucesso!',
-        duration: 3000
+    this.produtoService.create(this.produto)
+      .then(sucess => {
+        console.log("SALVOU", sucess);
+        this.toast.create({
+          message: "Produto criado com Sucesso!",
+          duration: 3000
+        });
+        this.navCtrl.setRoot("BuscaPage");
+        loading.dismiss();
+      })
+      .catch(fail => {
+        console.error("ERROR: ", fail);
+        loading.dismiss();
       });
-    this.navCtrl.setRoot('BuscaPage');
-    loading.dismiss();
-    }).catch ( fail => {
-      console.error("ERROR: ", fail);
-      loading.dismiss();
-    });
   }
 
   ionViewCanEnter() {

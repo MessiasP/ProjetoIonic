@@ -6,6 +6,7 @@ export  class Produto {
       public valorCompra?: string,
       public valorVenda?: string,
       public quantidade?: string,
-      public descricao?: string
+      public descricao?: string,
+      public checked = false  
    ){}
 }

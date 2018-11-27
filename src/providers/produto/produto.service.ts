@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs/Observable';
 import { Injectable } from "@angular/core";
 
 import { AngularFireDatabase } from "angularfire2/database";
@@ -17,8 +16,8 @@ export class ProdutoService {
     return this.productList;
   }
 
-  public  findOne(uid: string) {
-    return this.aFDatabase.object('/Produtos'+uid).valueChanges();
+  public  findByParam(marca: string) {
+    return this.aFDatabase.object('/Produtos'+marca).valueChanges();
   }
 
   public async create( produto: Produto ) {

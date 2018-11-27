@@ -1,13 +1,17 @@
+import { VendaProdutoService } from './../../providers/produto/venda-produto.service';
+import { ComandaService } from './../../providers/comanda/comanda.service';
 import { Component } from "@angular/core";
 import {
   IonicPage,
   NavController,
   NavParams,
-  MenuController
+  MenuController,
+  ToastController,
+  Loading,
+  LoadingController
 } from "ionic-angular";
 
 import { map } from "rxjs/operators";
-import { Observable } from "rxjs/Observable";
 
 import { ProdutoService } from "../../providers/produto/produto.service";
 import { Produto } from "../../model/produto/produto.model";
@@ -18,18 +22,29 @@ import { Produto } from "../../model/produto/produto.model";
   templateUrl: "busca.html"
 })
 export class BuscaPage {
-  products: Observable<Produto[]>;
+
+  produto: Produto;
+
+  products: Produto[];
+
+  produtoVendido: any;
 
   constructor(
+    private comandaService: ComandaService,
+    private loadingCtrl: LoadingController,
+    public menuCtrl: MenuController,
     public navCtrl: NavController,
     public navParams: NavParams,
-    public menuCtrl: MenuController,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private toast: ToastController,
+    private vendaProdutoService: VendaProdutoService,
+
   ) {}
 
   onDetalhaProduto(): void {
     this.navCtrl.setRoot("DetalhaProdutoPage");
   }
+
   onCadastraProduto(): void {
     this.navCtrl.setRoot("CadastraProdutoPage");
   }
@@ -37,12 +52,12 @@ export class BuscaPage {
   ionViewDidEnter() {
     //HABILITA MENU CASE F5
     this.menuCtrl.enable(true);
+
     this.getAll();
   }
 
   getAll() {
-    this.products = this.produtoService
-      .findAll()
+    this.produtoService.findAll()
       .snapshotChanges()
       .pipe(
         map(changes => {
@@ -51,7 +66,59 @@ export class BuscaPage {
             ...c.payload.val()
           }));
         })
-      );
+      )
+      .subscribe((produtos) => {
+        this.products = produtos.map(produt => Object.assign({}, produt, { checked: false }));
+
+      });
+  }
+
+  verifyCheckbox() {
+    this.produtoVendido = null;
+    this.produtoVendido = this.products.filter((product) => {
+      console.log(product);
+
+      return product.checked;
+    });
+    console.log(this.produtoVendido);
+    if(this.produtoVendido != null) {
+      return this.save();
+    }
+      return console.log("marque um algum dos podutos");
+    
+  }
+
+  save() {
+
+    let loading: Loading = this.showLoading();
+    
+    console.log("fora", this.produtoVendido);
+    this.comandaService.createComanda(this.produtoVendido).then(sucess => {
+    console.log("SALVOU", sucess);
+    this.produtoVendido = null;
+      this.toast.create({
+        message: 'Produto criado com Sucesso!',
+        duration: 3000
+      });
+    
+    loading.dismiss();
+    }).catch(fail => {
+      console.error("ERROR: ", fail);
+      loading.dismiss();
+    })
+  }
+  
+  private showLoading(): Loading {
+    let loading: Loading = this.loadingCtrl.create({
+      content: "Por favor aguarde..."
+    });
+    loading.present();
+    return loading;
+  }
+
+  //procurar produto por parametros
+  searchProduct() {
+    this.produtoService.findByParam(this.produto.nome)
   }
 
   //  getOne() {

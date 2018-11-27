@@ -11,13 +11,15 @@ import { MyApp } from './app.component';
 
 import { FIREBASE_CONFIG } from './firebase.credentials';
 
+import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+import { BrMaskerModule } from 'brmasker-ionic-3';
+import { ComandaService } from '../providers/comanda/comanda.service';
 import { HomeModule } from '../pages/home/home.module';
-import { UserService } from '../providers/user/user.service';
-import { UserDatabaseService } from '../providers/user-database/user-database.service';
 import { ProdutoService } from '../providers/produto/produto.service';
 import { TranslateModule, TranslateService, TranslateStore } from '@ngx-translate/core';
-import { BrMaskerModule } from 'brmasker-ionic-3';
-import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
+import { UserService } from '../providers/user/user.service';
+import { UserDatabaseService } from '../providers/user-database/user-database.service';
+import { VendaProdutoService } from '../providers/produto/venda-produto.service';
 
 @NgModule({
   declarations: [
@@ -41,14 +43,16 @@ import { AngularFireAuth, AngularFireAuthModule } from 'angularfire2/auth';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler },,
-    UserService,
-    UserDatabaseService,
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    AngularFireAuth,
+    AngularFireDatabase,
+    ComandaService,
     ProdutoService,
     TranslateService,
     TranslateStore,
-    AngularFireAuth,
-    AngularFireDatabase,
+    UserDatabaseService,
+    UserService,
+    VendaProdutoService,
   ]
 })
 export class AppModule { }

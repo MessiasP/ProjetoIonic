@@ -6,9 +6,7 @@
 
     <ion-title text-center>CATALOGO</ion-title>
 
-    <button ion-button icon-only persistent="false" (click)="verifyCheckbox()" end>
-        <ion-icon id="newControl" name="add-circle"></ion-icon>
-    </button>
+    
   </ion-navbar>
 </ion-header>
 
@@ -16,6 +14,9 @@
   <ion-list padding text-center>
     <h4>Encontre o produto desejado!</h4>
 
+    <button ion-button block color="primary" (click)="verifyCheckbox()">
+      <ion-icon id="newControl" name="add-circle"> SALVAR COMANDA</ion-icon>
+  </button>
     <!-- <form> -->
       <!-- <ion-item class="espace">
         <ion-label floating>CODIGO</ion-label>
@@ -29,7 +30,7 @@
 
       <button ion-button block color="primary" (click)="searchProduct()">BUSCA</button> -->
     <!-- </form> -->
-    <br /><br />
+    
   </ion-list>
   <ion-card class="card" *ngFor="let product of products">
     <ion-item class="itemBody" col-8 col-sm-8 col-md-10 col-lg-8 col-xl-11>

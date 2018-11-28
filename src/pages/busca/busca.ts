@@ -56,21 +56,22 @@ export class BuscaPage {
     this.getAll();
   }
 
-  getAll() {
+  getAll() {  
     this.produtoService.findAll()
       .snapshotChanges()
       .pipe(
-        map(changes => {
+        map(changes => {  
           return changes.map(c => ({
             key: c.payload.key,
             ...c.payload.val()
           }));
         })
+        
       )
       .subscribe((produtos) => {
         this.products = produtos.map(produt => Object.assign({}, produt, { checked: false }));
-
       });
+      
   }
 
   verifyCheckbox() {

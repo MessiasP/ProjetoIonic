@@ -24,26 +24,38 @@
     </button>
   </ion-list>
 
-  <ion-card class="card" *ngFor="let product of products">
+  <ion-card class="card" *ngFor="let comanda of produtos">
     <ion-item class="itemBody" col-8 col-sm-8 col-md-10 col-lg-8 col-xl-11>
       <ion-avatar class="ionAvatar" item-left text-center>
-        <p>{{ product.codigoBarra }}</p>
-        <h3><img src="../../assets/imgs/working-laptop.jpg" /></h3>
+        <p>{{ comanda.nome }}</p>
+        <ion-icon nome="person"></ion-icon>
       </ion-avatar>
 
-      <label>{{ product.nome }}</label>
-      <label class="lblValor">R$ {{ product.valorVenda }}</label>
-      <p>{{ product.descricao }}</p>
+      <label class="lblValor">R$ {{ comanda.valor }}</label>
+      <p>{{ comanda.descricao }}</p>
     </ion-item>
-
     <ion-item class="acoes" col-4 col-sm-4 col-md-4 col-lg-4 col-xl-2>
-      <ion-item class="itemView" (click)="onDetalhaProduto()">
+      <ion-item class="itemView" (click)="onDetalhaComandas()">
         <ion-icon name="eye"></ion-icon>
       </ion-item>
 
       <ion-item class="itemCheckbox">
-        <ion-icon name="close"></ion-icon>
+        <ion-icon name="close" (click)="removeComanda()"></ion-icon>
       </ion-item>
     </ion-item>
+    <!-- <div *ngIf="showProdutos" >
+      <ion-card class="card">
+        <ion-item class="itemBody" col-8 col-sm-8 col-md-10 col-lg-8 col-xl-11>
+          
+          <ion-item class="ionAvatar" item-left text-center>
+            <p>{{ comanda.codigoBarra }}</p>
+          </ion-item>
+    
+          <label>{{ comanda.nome }}</label>
+          <label class="lblValor">R$ {{ comanda.valorVenda }}</label>
+          <p>{{ comanda.descricao }}</p>
+        </ion-item>
+    </ion-card>
+    </div> -->
   </ion-card>
 </ion-content>

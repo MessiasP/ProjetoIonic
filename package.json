@@ -32,10 +32,7 @@
     "firebase": "^5.5.7",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
-<<<<<<< HEAD
     "mongoose": "^5.4.0",
-=======
->>>>>>> fa3172099f9e5f38574700680b42fc02e450747a
     "phonegap-plugin-barcodescanner": "^8.0.1",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
@@ -49,12 +46,8 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-<<<<<<< HEAD
       "phonegap-plugin-barcodescanner": {},
       "cordova-plugin-advanced-http": {}
-=======
-      "phonegap-plugin-barcodescanner": {}
->>>>>>> fa3172099f9e5f38574700680b42fc02e450747a
     }
   }
 }

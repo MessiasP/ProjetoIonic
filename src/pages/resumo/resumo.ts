@@ -69,8 +69,11 @@ export class ResumoPage {
       }))
     })).subscribe((produtosSub) => {
       this.produtos = produtosSub.map(produt => Object.assign(produt));
+<<<<<<< HEAD
       console.log("AQUI", this.produtos);
       
+=======
+>>>>>>> fa3172099f9e5f38574700680b42fc02e450747a
     });
    }
 

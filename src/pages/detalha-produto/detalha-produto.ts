@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ProdutoService } from '../../providers/produto/produto.service';
 
 /**
  * Generated class for the DetalhaProdutoPage page.
@@ -15,9 +16,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetalhaProdutoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public produtoService: ProdutoService) {
 
+      produtoService.findByParam().subscribe(sucess => {
+        console.log("Mateus Testa",sucess);
+        
+      })
+    }
   onBusca():void {
     this.navCtrl.setRoot('BuscaPage');
   }
@@ -25,4 +31,10 @@ export class DetalhaProdutoPage {
   onResumo():void {
     this.navCtrl.setRoot('ResumoPage');
   }
+
+  detalhaProduto() {
+    // this.produtoService.findByParam();
+  }
+
+
 }

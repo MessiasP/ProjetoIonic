@@ -3,28 +3,39 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
 
 import { UserLogin } from "../../model/user/user.login.model";
+import { HTTP } from "@ionic-native/http";
+import { HttpClient } from "@angular/common/http";
+import { Http } from "@angular/http";
 
 @Injectable()
 export class UserService {
   
-  constructor(private angularFireAuth: AngularFireAuth) {}
+  configURL = 'http://localhost:3000/api'
+  apiURL = `${this.configURL}/user`
 
-  signIn(userLogin: UserLogin) {
-    return this.angularFireAuth.auth
-      .signInWithEmailAndPassword(userLogin.email, userLogin.password);
+  constructor(
+    private http: HttpClient) 
+  {}
+
+  async signIn(userLogin: UserLogin) {
+    
+    return  await this.http.post(this.apiURL, userLogin);
   }
-
-  createUser(userLogin: UserLogin) {
-    return this.angularFireAuth.auth
-      .createUserWithEmailAndPassword(userLogin.email, userLogin.password);
+  
+  async create(userLogin: UserLogin) {
+    console.log("BATEU SERVICE!!", userLogin);
+    return await this.http.post(`${this.apiURL}`, userLogin).subscribe(res => {
+      console.log("RESSERVICE", res);
+      
+    });
   }
 
   recoveryAccount(userLogin: UserLogin) {
-    return this.angularFireAuth.auth
-      .sendPasswordResetEmail(userLogin.email);
+    // return this.angularFireAuth.auth
+    //   .sendPasswordResetEmail(userLogin.login);
   }
 
   deleteUser(uid: string) {
-    return this.angularFireAuth;
+    // return this.angularFireAuth;
   }
 }

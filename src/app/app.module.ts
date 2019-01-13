@@ -20,10 +20,12 @@ import { TranslateModule, TranslateService, TranslateStore } from '@ngx-translat
 import { UserService } from '../providers/user/user.service';
 import { UserDatabaseService } from '../providers/user-database/user-database.service';
 import { VendaProdutoService } from '../providers/produto/venda-produto.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,9 @@ import { VendaProdutoService } from '../providers/produto/venda-produto.service'
     HomeModule,
     TranslateModule.forChild(),
     BrMaskerModule,
-
+    HttpClientModule,
+    HttpModule,
+ 
   ],
   bootstrap: [IonicApp],
   entryComponents: [

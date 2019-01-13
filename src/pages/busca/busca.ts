@@ -15,6 +15,7 @@ import { map } from "rxjs/operators";
 
 import { ProdutoService } from "../../providers/produto/produto.service";
 import { Produto } from "../../model/produto/produto.model";
+import { Comanda } from '../../model/comanda/comanda.model';
 
 @IonicPage()
 @Component({
@@ -23,11 +24,11 @@ import { Produto } from "../../model/produto/produto.model";
 })
 export class BuscaPage {
 
+  comanda: Comanda;
+
   produto: Produto;
 
   products: Produto[];
-
-  produtoVendido: any;
 
   constructor(
     private comandaService: ComandaService,
@@ -37,7 +38,6 @@ export class BuscaPage {
     public navParams: NavParams,
     private produtoService: ProdutoService,
     private toast: ToastController,
-    private vendaProdutoService: VendaProdutoService,
 
   ) {}
 
@@ -56,46 +56,45 @@ export class BuscaPage {
     this.getAll();
   }
 
-  getAll() {
+  getAll() {  
     this.produtoService.findAll()
       .snapshotChanges()
       .pipe(
-        map(changes => {
+        map(changes => {  
           return changes.map(c => ({
             key: c.payload.key,
             ...c.payload.val()
           }));
         })
+        
       )
       .subscribe((produtos) => {
         this.products = produtos.map(produt => Object.assign({}, produt, { checked: false }));
-
       });
+      
   }
 
   verifyCheckbox() {
-    this.produtoVendido = null;
-    this.produtoVendido = this.products.filter((product) => {
+    this.comanda.produto = this.products.filter((product) => {
       console.log(product);
 
       return product.checked;
     });
-    console.log(this.produtoVendido);
-    if(this.produtoVendido != null) {
-      return this.save();
+    console.log(this.comanda);
+    if(this.comanda != null) {
+      return this.saveComanda();
     }
       return console.log("marque um algum dos podutos");
     
   }
 
-  save() {
-
+  saveComanda() {
+    this.comanda.nome = 'Souza';
     let loading: Loading = this.showLoading();
     
-    console.log("fora", this.produtoVendido);
-    this.comandaService.createComanda(this.produtoVendido).then(sucess => {
+    console.log("fora", this.comanda.produto);
+    this.comandaService.createComanda(this.comanda).then(sucess => {
     console.log("SALVOU", sucess);
-    this.produtoVendido = null;
       this.toast.create({
         message: 'Produto criado com Sucesso!',
         duration: 3000
@@ -117,9 +116,9 @@ export class BuscaPage {
   }
 
   //procurar produto por parametros
-  searchProduct() {
-    this.produtoService.findByParam(this.produto.nome)
-  }
+  // searchProduct() {
+  //   this.produtoService.findByParam(this.produto.nome)
+  // }
 
   //  getOne() {
   //   return this.produtoService.findOne('uid').subscribe(res => {

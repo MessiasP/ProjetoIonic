@@ -20,7 +20,7 @@ export class HomePage {
     public navCtrl: NavController,
     private translate: TranslateService,
     public menuCtrl: MenuController) {
-     translate.get([
+      translate.get([
        "SLIDE_FIRST",
        "SLIDE_SECUND"
      ]).subscribe(

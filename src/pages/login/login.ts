@@ -30,21 +30,21 @@ export class LoginPage {
   ) {
     this.userLogin = new UserLogin();
 
-    this.userLogin.email = null;
+    this.userLogin.login = null;
     this.userLogin.password = null;
   }
 
   authLogin() {
-    if (this.userLogin.email != null && this.userLogin.password != null) {
-      return this.userService
-        .signIn(this.userLogin)
-        .then(sucess => {
-          this.navCtrl.setRoot("BuscaPage");
-        })
-        .catch(fail => {
-          this.showToast(fail.code);
-        });
-    }
+    // if (this.userLogin.login != null && this.userLogin.password != null) {
+    //   return this.userService
+    //     .signIn(this.userLogin)
+    //     .then(sucess => {
+    //       this.navCtrl.setRoot("BuscaPage");
+    //     })
+    //     .catch(fail => {
+    //       this.showToast(fail.code);
+    //     });
+    // }
     return this.presentAlert();
   }
 
@@ -81,7 +81,7 @@ export class LoginPage {
   }
 
   presentAlert() {
-    if (this.userLogin.email === null) {
+    if (this.userLogin.login === null) {
       const alert = this.AlertCtrl.create({
         title: "Digite um Email!",
         buttons: ["Voltar"]

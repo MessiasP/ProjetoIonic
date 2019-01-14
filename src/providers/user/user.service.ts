@@ -3,9 +3,7 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
 
 import { UserLogin } from "../../model/user/user.login.model";
-import { HTTP } from "@ionic-native/http";
 import { HttpClient } from "@angular/common/http";
-import { Http } from "@angular/http";
 
 @Injectable()
 export class UserService {

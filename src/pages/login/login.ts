@@ -34,7 +34,7 @@ export class LoginPage {
     this.userLogin.password = null;
   }
 
-  authLogin() {
+  async authLogin() {
     // if (this.userLogin.login != null && this.userLogin.password != null) {
     //   return this.userService
     //     .signIn(this.userLogin)
@@ -45,7 +45,19 @@ export class LoginPage {
     //       this.showToast(fail.code);
     //     });
     // }
-    return this.presentAlert();
+    // console.log('OBJ: ', this.userLogin);
+    // try{
+    const token: any = await this.userService.signIn(this.userLogin);
+    console.log('TOKEN PAGE: ', token);
+      // this.userService.signIn(this.userLogin).then(res => {
+      //   console.log('tham: ', res);
+      // }).catch(err => {
+      //   console.log('FOI');
+      // });
+    // } catch(e) {
+    //   console.error('Error: \n', e)
+    // }
+    // return this.presentAlert();
   }
 
   private showToast(code: string): void {
@@ -76,7 +88,8 @@ export class LoginPage {
   }
 
   onRegistro(): void {
-    this.navCtrl.push("RegistraPage");
+    this.userService.recoveryAccount();
+    // this.navCtrl.push("RegistraPage");
     // this.menuCtrl.enable(true);//_____________________TIRAR ISSO AQUI__________________________________
   }
 

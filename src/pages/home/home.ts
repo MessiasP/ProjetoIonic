@@ -56,8 +56,4 @@ export class HomePage {
     //   console.log('DATA: ', data);
     // })
   }
-
-  agoraVai() {
-
-  }
 }

@@ -34,8 +34,7 @@ export class LoginPage {
     this.userLogin.password = null;
   }
 
-  authLogin() {
-    const uri = 'localhost:8100'
+  async authLogin() {
     // if (this.userLogin.login != null && this.userLogin.password != null) {
     //   return this.userService
     //     .signIn(this.userLogin)
@@ -46,10 +45,18 @@ export class LoginPage {
     //       this.showToast(fail.code);
     //     });
     // }
-    this.userService.signIn(this.userLogin).then(response => console.log("sucess", response))    
-    .then(contents => console.log('midlle', contents))
-    .catch(() => console.log("Can’t access " , uri , " response. Blocked by browser?"));
-    
+    // console.log('OBJ: ', this.userLogin);
+    // try{
+    const token: any = await this.userService.signIn(this.userLogin);
+    console.log('TOKEN PAGE: ', token);
+      // this.userService.signIn(this.userLogin).then(res => {
+      //   console.log('tham: ', res);
+      // }).catch(err => {
+      //   console.log('FOI');
+      // });
+    // } catch(e) {
+    //   console.error('Error: \n', e)
+    // }
     // return this.presentAlert();
   }
 
@@ -81,7 +88,8 @@ export class LoginPage {
   }
 
   onRegistro(): void {
-    this.navCtrl.push("RegistraPage");
+    this.userService.recoveryAccount();
+    // this.navCtrl.push("RegistraPage");
     // this.menuCtrl.enable(true);//_____________________TIRAR ISSO AQUI__________________________________
   }
 

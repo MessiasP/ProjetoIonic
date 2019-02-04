@@ -35,6 +35,7 @@ export class LoginPage {
   }
 
   authLogin() {
+    const uri = 'localhost:8100'
     // if (this.userLogin.login != null && this.userLogin.password != null) {
     //   return this.userService
     //     .signIn(this.userLogin)
@@ -45,7 +46,11 @@ export class LoginPage {
     //       this.showToast(fail.code);
     //     });
     // }
-    return this.presentAlert();
+    this.userService.signIn(this.userLogin).then(response => console.log("sucess", response))    
+    .then(contents => console.log('midlle', contents))
+    .catch(() => console.log("Can’t access " , uri , " response. Blocked by browser?"));
+    
+    // return this.presentAlert();
   }
 
   private showToast(code: string): void {

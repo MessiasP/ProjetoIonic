@@ -63,10 +63,7 @@ export class RegistraPage {
 
   save() {
     this.userService.create(this.userLogin).then(res => {
-      console.log("RESTHEN", res);
-      
-    }).catch(err => {
-      console.log("ERRO", err);
+      console.log('sucess', res);
       
     });
       // .then(sucess => {

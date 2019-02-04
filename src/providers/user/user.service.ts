@@ -17,13 +17,15 @@ export class UserService {
 
   async signIn(userLogin: UserLogin) {
     
-    return  await this.http.post(this.apiURL, userLogin);
+    return  await this.http.post(`${this.configURL}/login`, userLogin).subscribe(data => {
+      console.log(data);
+    });
   }
   
   async create(userLogin: UserLogin) {
     console.log("BATEU SERVICE!!", userLogin);
-    return await this.http.post(`${this.apiURL}`, userLogin).subscribe(res => {
-      console.log("RESSERVICE", res);
+    return await this.http.post(`${this.apiURL}`, userLogin).subscribe(data => {
+      console.log("RESSERVICE", data);
       
     });
   }

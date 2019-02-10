@@ -12,11 +12,12 @@ export class ProdutoService {
   constructor(private aFDatabase: AngularFireDatabase) {}
 
   public findAll() {
+    console.log("service 1 ", this.productList);
     return this.productList;
   }
 
-  public findByParam() {
-    return  this.aFDatabase.object('/Produtos'+'/-LS5qOuxgJeTYmZ_w0eo').valueChanges();
+  public  findByParam(marca: string) {
+    return this.aFDatabase.object('/Produtos'+marca).valueChanges();
   }
 
   public async create( produto: Produto ) {

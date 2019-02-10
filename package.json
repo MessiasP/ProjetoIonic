@@ -17,12 +17,10 @@
     "@angular/compiler-cli": "5.2.11",
     "@angular/core": "5.2.11",
     "@angular/forms": "5.2.11",
-    "@angular/http": "^5.2.11",
+    "@angular/http": "5.2.11",
     "@angular/platform-browser": "5.2.11",
     "@angular/platform-browser-dynamic": "5.2.11",
-    "@ionic-native/barcode-scanner": "^4.17.0",
     "@ionic-native/core": "~4.15.0",
-    "@ionic-native/http": "^4.19.0",
     "@ionic-native/splash-screen": "~4.15.0",
     "@ionic-native/status-bar": "~4.15.0",
     "@ionic/storage": "2.2.0",
@@ -32,10 +30,7 @@
     "firebase": "^5.5.7",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
-<<<<<<< HEAD
     "mongoose": "^5.4.0",
-=======
->>>>>>> fa3172099f9e5f38574700680b42fc02e450747a
     "phonegap-plugin-barcodescanner": "^8.0.1",
     "rxjs": "^6.3.3",
     "rxjs-compat": "^6.3.3",
@@ -49,12 +44,7 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-<<<<<<< HEAD
-      "phonegap-plugin-barcodescanner": {},
-      "cordova-plugin-advanced-http": {}
-=======
       "phonegap-plugin-barcodescanner": {}
->>>>>>> fa3172099f9e5f38574700680b42fc02e450747a
     }
   }
 }

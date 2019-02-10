@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, MenuController } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
 
 export interface Slide {
   title: string;
@@ -20,9 +19,8 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private translate: TranslateService,
-    public menuCtrl: MenuController,
-    private http: HttpClient) {
-      translate.get([
+    public menuCtrl: MenuController) {
+     translate.get([
        "SLIDE_FIRST",
        "SLIDE_SECUND"
      ]).subscribe(
@@ -51,9 +49,7 @@ export class HomePage {
 
   onLogin():void {
     this.navCtrl.setRoot('LoginPage');
-    // console.log('entrou')
-    // this.http.get('http://localhost:3000/api/users').subscribe(data => {
-    //   console.log('DATA: ', data);
-    // })
   }
+
+
 }

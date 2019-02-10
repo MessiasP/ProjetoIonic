@@ -20,7 +20,17 @@
 
     <ion-item>
       <ion-label floating>E-mail</ion-label>
-      <ion-input type="email" [(ngModel)]="userLogin.login"> </ion-input>
+      <ion-input type="email" [(ngModel)]="userLogin.email"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Endereço</ion-label>
+      <ion-input type="text" [(ngModel)]="userLogin.endereco"> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>CEP</ion-label>
+      <ion-input type="text" [(ngModel)]="userLogin.cep"> </ion-input>
     </ion-item>
 
     <ion-item>

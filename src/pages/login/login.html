@@ -4,13 +4,11 @@
 
 <ion-content padding>
   <ion-list text-center>
-    <ion-icon> <h1>
-        <strong>ControllBOX</strong>
-    </h1> </ion-icon>
+    <ion-icon> <h1>ControlBOX</h1> </ion-icon>
 
     <ion-item>
       <ion-label floating>{{ 'USUARIO' }}</ion-label>
-      <ion-input type="email" [(ngModel)]="userLogin.login">
+      <ion-input type="email" name="email" [(ngModel)]="userLogin.email">
       </ion-input>
     </ion-item>
 

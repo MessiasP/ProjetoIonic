@@ -7,7 +7,7 @@ import { Produto } from "../../model/produto/produto.model";
 @Injectable()
 export class VendaProdutoService {
 
-  private sellProductList = this.aFDatabase.list<Produto>('/comandas/sellproducts');
+  private sellProductList = this.aFDatabase.list<Produto[]>('/comandas/sellproducts');
 
   constructor(private aFDatabase: AngularFireDatabase) {}
 
@@ -20,7 +20,7 @@ export class VendaProdutoService {
     return this.aFDatabase.object('/sellproducts'+uid).valueChanges();
   }
 
-  public async create( produto: Produto ) {
+  public async create( produto: Produto[] ) {
     console.log("Service Venda, ", produto);
     
     return await this.sellProductList.push(produto);

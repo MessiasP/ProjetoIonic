@@ -18,16 +18,7 @@ export class DetalhaProdutoPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public produtoService: ProdutoService) {
-<<<<<<< HEAD
-=======
   }
->>>>>>> fa3172099f9e5f38574700680b42fc02e450747a
-
-      produtoService.findByParam().subscribe(sucess => {
-        console.log("Mateus Testa",sucess);
-        
-      })
-    }
   onBusca():void {
     this.navCtrl.setRoot('BuscaPage');
   }
@@ -39,9 +30,4 @@ export class DetalhaProdutoPage {
   detalhaProduto() {
     // this.produtoService.findByParam();
   }
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fa3172099f9e5f38574700680b42fc02e450747a
 }

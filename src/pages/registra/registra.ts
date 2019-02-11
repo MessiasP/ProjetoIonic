@@ -45,9 +45,7 @@ export class RegistraPage {
     // VER PORQUE AS VALIDAÇÕES N SAO PEGAS || TROCAR PARA FORMA DO PROFESSOR (GITHUB)
     this.userLogin.nome = null;
     this.userLogin.sobrenome = null;
-    this.userLogin.email = null;
-    this.userLogin.endereco = null;
-    this.userLogin.cep = null;
+    this.userLogin.login = null;
     this.userLogin.cpf = null;
     this.userLogin.password = null;
   }
@@ -56,8 +54,7 @@ export class RegistraPage {
     this.verificaForm();
     if (
       this.userLogin.nome != null &&
-      this.userLogin.email != null &&
-      this.userLogin.endereco != null &&
+      this.userLogin.login != null &&
       this.passwordInvalid === false
     ) {
       return this.save();
@@ -70,7 +67,7 @@ export class RegistraPage {
       .createUser(this.userLogin)
       .then(sucess => {
         console.log("sucess", sucess);
-        this.userDatabase.createUser(this.userLogin);
+        this.userDatabase.create(this.userLogin);
         this.toast.create({
           message: `Cadastro realizado com sucesso!`,
           duration: 3000
@@ -138,17 +135,9 @@ export class RegistraPage {
       });
       alert.present();
     }
-    if (this.userLogin.email === null) {
+    if (this.userLogin.login === null) {
       const alert = this.AlertCtrl.create({
         title: "Digite um Email!",
-        subTitle: "Não pode ser vazio!",
-        buttons: ["Voltar"]
-      });
-      alert.present();
-    }
-    if (this.userLogin.endereco === null) {
-      const alert = this.AlertCtrl.create({
-        title: "Endereço Inválido!",
         subTitle: "Não pode ser vazio!",
         buttons: ["Voltar"]
       });

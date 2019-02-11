@@ -1,27 +1,40 @@
 import { Injectable } from "@angular/core";
 
-import { AngularFireDatabase } from "angularfire2/database";
-
 import { Produto } from "../../model/produto/produto.model";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class ProdutoService {
 
-  private productList = this.aFDatabase.list<Produto>('/Produtos');
+  configURL = 'http://localhost:3000/api';
+  apiURL = `${this.configURL}/produto`;
 
-  constructor(private aFDatabase: AngularFireDatabase) {}
+  authURL = `https://www.googleapis.com/identitytoolkit/v3/relyingparty`
 
-  public findAll() {
-    console.log("service 1 ", this.productList);
-    return this.productList;
+  constructor(
+    private http: HttpClient,
+    ) {}
+
+  async findAll() {
+    let localHeaders = new HttpHeaders().set('Authorization', 'Bearer ' +  localStorage.getItem('token'));
+
+    return await this.http.post(`${this.authURL}/getAccountInfo?key=`, {headers: localHeaders}).subscribe(data => {
+      console.log('key', data)
+      this.http.get(`${this.apiURL}`).subscribe(data => console.log("service 1 ", data));
+  });
   }
 
   public  findByParam(marca: string) {
-    return this.aFDatabase.object('/Produtos'+marca).valueChanges();
+    return this.http.get('/Produtos'+marca).subscribe(data => {
+      console.log('findParam', data);
+      
+    });
   }
 
   public async create( produto: Produto ) {
-    return await this.productList.push(produto);
+    return await this.http.post(`${this.apiURL}`, produto).subscribe(data => {
+      console.log('create', data);
+    });
   }
 
   update(produto: Produto) {
@@ -29,9 +42,9 @@ export class ProdutoService {
   }
 
   public delete(uid: string) {
-    return this.aFDatabase
-    .object(uid)
-    .remove();
+    return this.http.get(`${this.apiURL}/${uid}`).subscribe(data => {
+      console.log('delete', data);
+    });
   }
 
 

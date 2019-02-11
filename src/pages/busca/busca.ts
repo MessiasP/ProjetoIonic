@@ -57,29 +57,20 @@ export class BuscaPage {
   }
 
   getAll() {
-    this.produtoService.findAll()
-      .snapshotChanges()
-      .pipe(
-        map(changes => {
-          return changes.map(c => ({
-            key: c.payload.key,
-            ...c.payload.val()
-          }));
-        })
-      )
-      .subscribe((produtos) => {
-        this.products = produtos.map(produt => Object.assign({}, produt, { checked: false }));
-
-      });
+    this.produtoService.findAll().then(sucess => {
+      console.log('trouxa', sucess);
+    }).catch(err => {
+      console.log('erro', err);
+    })
   }
 
   verifyCheckbox() {
     this.produtoVendido = null;
-    this.produtoVendido = this.products.filter((product) => {
-      console.log(product);
+    // this.produtoVendido = this.products.filter((product) => {
+    //   console.log(product);
 
-      return product.checked;
-    });
+    //   return product.checked;
+    // });
     console.log(this.produtoVendido);
     if(this.produtoVendido != null) {
       return this.save();

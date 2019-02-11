@@ -1,38 +1,54 @@
 import { Injectable } from "@angular/core";
 
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from "angularfire2/database";
 import { UserLogin } from "../../model/user/user.login.model";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { storage } from "firebase";
+
 
 
 @Injectable()
 export class UserDatabaseService {
-
-  private userList = this.aFDatabase.list<UserLogin>("/Users");
+  
+  configURL = 'http://localhost:3000/api';
+  apiURL = `${this.configURL}/user`;
 
   private uid: string;
 
   constructor(
-    private aFDatabase: AngularFireDatabase,
-    private afAuth: AngularFireAuth,) {
+    private afAuth: AngularFireAuth,
+    private http: HttpClient,
+    ) {}
+
+  async findAll() {
+    let localHeaders = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'))  
+
+    return await this.http.get(`${this.apiURL}`, {headers: localHeaders}).subscribe(data => {
+      console.log('searhAll', data);
+      
+    });
   }
 
-  public findAll() {
-    return this.aFDatabase;
+  async findOne(uid: string) {
+    return await this.http.get(`${this.apiURL}/:uid`).subscribe(data => {
+      console.log('searhOne', data);
+      
+    });
   }
 
-  public findOne(uid: string) {
-    return this.aFDatabase;
+  async create(userLogin: UserLogin) {
+    console.log("BATEU SERVICE!!", userLogin);
+    return await this.http.post(`${this.apiURL}`, userLogin).subscribe(data => {
+      console.log("RESSERVICE", data);
+    });
+
   }
 
-  public createUser( userLogin: UserLogin) {
-    console.log("Service, Obj ", userLogin);
-    userLogin.password = null;
-    return this.userList.push(userLogin);
-  }
-
-  public delete(uid: string) {
-    return this.aFDatabase.object(uid).remove();
+  async delete(uid: string) {
+    return await this.http.delete(`${this.apiURL}/:uid`).subscribe(data => {
+      console.log('delete', data);
+      
+    });
   }
 
   public getUid() {

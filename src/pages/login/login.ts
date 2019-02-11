@@ -10,6 +10,7 @@ import {
 
 import { UserLogin } from "../../model/user/user.login.model";
 import { UserService } from "../../providers/user/user.service";
+import { storage } from "firebase";
 
 @IonicPage()
 @Component({
@@ -30,15 +31,19 @@ export class LoginPage {
   ) {
     this.userLogin = new UserLogin();
 
-    this.userLogin.email = null;
+    this.userLogin.login = null;
     this.userLogin.password = null;
   }
 
   authLogin() {
-    if (this.userLogin.email != null && this.userLogin.password != null) {
+    if (this.userLogin.login != null && this.userLogin.password != null) {
       return this.userService
         .signIn(this.userLogin)
         .then(sucess => {
+          var token = sucess.user.refreshToken;
+         localStorage.setItem('token', token);
+          console.log('sucesso: ', sucess.user.refreshToken);
+
           this.navCtrl.setRoot("BuscaPage");
         })
         .catch(fail => {
@@ -82,7 +87,7 @@ export class LoginPage {
   }
 
   presentAlert() {
-    if (this.userLogin.email === null) {
+    if (this.userLogin.login === null) {
       const alert = this.AlertCtrl.create({
         title: "Digite um Email!",
         buttons: ["Voltar"]

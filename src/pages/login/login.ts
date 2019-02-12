@@ -11,6 +11,7 @@ import {
 import { UserLogin } from "../../model/user/user.login.model";
 import { UserService } from "../../providers/user/user.service";
 import { storage } from "firebase";
+import {TokenService} from "../../providers/token/token.service";
 
 @IonicPage()
 @Component({
@@ -27,7 +28,8 @@ export class LoginPage {
     public menuCtrl: MenuController,
     private userService: UserService,
     private toast: ToastController,
-    private AlertCtrl: AlertController
+    private AlertCtrl: AlertController,
+    private tokenService: TokenService
   ) {
     this.userLogin = new UserLogin();
 
@@ -35,22 +37,20 @@ export class LoginPage {
     this.userLogin.password = null;
   }
 
+  /**
+   * Metodo acionado quando o botao Login é clicado
+   * EU acho q nunca cai no error, TESTAR
+   */
   authLogin() {
-    if (this.userLogin.login != null && this.userLogin.password != null) {
-      return this.userService
-        .signIn(this.userLogin)
-        .then(sucess => {
-          var token = sucess.user.refreshToken;
-         localStorage.setItem('token', token);
-          console.log('sucesso: ', sucess.user.refreshToken);
+    this.userService.signIn(this.userLogin).subscribe((res:any) => {
+      // res vai ter: { token: abcd, user: { dados do usuario, senha, email, etc } }
 
-          this.navCtrl.setRoot("BuscaPage");
-        })
-        .catch(fail => {
-          this.showToast(fail.code);
-        });
-    }
-    return this.presentAlert();
+      // Seta o token pelo metodo: set token()
+      this.tokenService.token = res.token;
+      this.navCtrl.setRoot("BuscaPage");
+    }, error1 => {
+      console.error('ERROR:\n', error1)
+    });
   }
 
   private showToast(code: string): void {

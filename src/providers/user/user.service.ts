@@ -3,31 +3,34 @@ import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "angularfire2/auth";
 
 import { UserLogin } from "../../model/user/user.login.model";
-import { HttpHeaders } from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable()
+/**
+ * Essa classa devia se chamar AuthService
+ */
 export class UserService {
-  
-  constructor(private angularFireAuth: AngularFireAuth) {}
+  rootUrl= 'http://localhost:3000/api';
+  url = `${this.rootUrl}/user`;
+  constructor(private http: HttpClient) {}
 
   signIn(userLogin: UserLogin) {
-    var retorno = this.angularFireAuth.auth
-      .signInWithEmailAndPassword(userLogin.login, userLogin.password);
-      // new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.setItem('token',))
-      return retorno;
+    // Simplismente faz um post com os dados para o back end
+    return this.http.post(`${this.rootUrl}/login`, userLogin)
   }
 
-  createUser(userLogin: UserLogin) {
-    return this.angularFireAuth.auth
-      .createUserWithEmailAndPassword(userLogin.login, userLogin.password);
+  createUser(userLogin: UserLogin): Observable<UserLogin> {
+    // Cria o usuario novo
+    return this.http.post(this.url, userLogin)
   }
 
   recoveryAccount(userLogin: UserLogin) {
-    return this.angularFireAuth.auth
-      .sendPasswordResetEmail(userLogin.login);
+    // return this.angularFireAuth.auth
+    //   .sendPasswordResetEmail(userLogin.login);
   }
 
   deleteUser(uid: string) {
-    return this.angularFireAuth;
+    // return this.angularFireAuth;
   }
 }

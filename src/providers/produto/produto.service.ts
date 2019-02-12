@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 
 import { Produto } from "../../model/produto/produto.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class ProdutoService {
@@ -27,14 +28,13 @@ export class ProdutoService {
   public  findByParam(marca: string) {
     return this.http.get('/Produtos'+marca).subscribe(data => {
       console.log('findParam', data);
-      
+
     });
   }
 
-  public async create( produto: Produto ) {
-    return await this.http.post(`${this.apiURL}`, produto).subscribe(data => {
-      console.log('create', data);
-    });
+  public create( produto: Produto ): Observable<Produto> {
+    // Não retornar o subscribe, vc da no subscribe no meto q ta chamando esse ou seja na page
+    return this.http.post(`${this.apiURL}`, produto);
   }
 
   update(produto: Produto) {

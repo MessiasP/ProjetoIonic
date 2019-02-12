@@ -20,7 +20,9 @@ import { TranslateModule, TranslateService, TranslateStore } from '@ngx-translat
 import { UserService } from '../providers/user/user.service';
 import { UserDatabaseService } from '../providers/user-database/user-database.service';
 import { VendaProdutoService } from '../providers/produto/venda-produto.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {TokenService} from "../providers/token/token.service";
+import {TokenApiService} from "../interceptadores/token-api.service";
 
 @NgModule({
   declarations: [
@@ -55,6 +57,15 @@ import { HttpClientModule } from '@angular/common/http';
     UserDatabaseService,
     UserService,
     VendaProdutoService,
+    TokenService,
+    /**
+     * Coloca o headers (Authorization bearer token)
+     */
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenApiService,
+      multi: true
+    }
   ]
 })
 export class AppModule { }

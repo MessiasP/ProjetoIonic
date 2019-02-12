@@ -19,7 +19,7 @@ import { UserLogin } from '../../model/user/user.login.model';
   templateUrl: "registra.html"
 })
 export class RegistraPage {
-  
+
   uid: String;
   userLogin: UserLogin;
   passwordC: string;
@@ -62,22 +62,23 @@ export class RegistraPage {
     return this.presentAlert();
   }
 
+  /**
+   * De novo, eu acho q NAO TA ENTRANDO NO ERROR
+   */
   save() {
-    this.userService
-      .createUser(this.userLogin)
-      .then(sucess => {
-        console.log("sucess", sucess);
-        this.userDatabase.create(this.userLogin);
-        this.toast.create({
-          message: `Cadastro realizado com sucesso!`,
-          duration: 3000
-        });
-        this.navCtrl.setRoot("LoginPage");
-      })
-      .catch(fail => {
-        this.showToast(fail.code);
-        console.error("Erro não tratado: ", fail);
+    this.userService.createUser(this.userLogin).subscribe(res => {
+      this.toast.create({
+        message: `Cadastro realizado com sucesso!`,
+        duration: 3000
       });
+      this.navCtrl.setRoot("LoginPage");
+    }, error1 => {
+      this.toast.create({
+        message: `Não foi possivel criar usuario!`,
+        duration: 3000
+      });
+      console.error('ERROR:\n', error1)
+    });
   }
 
   verificaForm() {

@@ -36,34 +36,31 @@ export class CadastraProdutoPage {
   }
 
   onSubmit(): void {
-    console.log("Produto: ", this.produto);
-    console.error("CODIGO", this.codigo);
-    // this.showLoading();
     this.codigo = this.produto.codigoBarra;
     // this.produtoService.codeExist(this.codigo);
     // if (!this.codigo){
     //   return this.presentAlert();
     // }
-    return this.save();
+    this.save();
   }
 
+  /**
+   * Cria um produto.
+   * Eu acho q ele nunca ta entrendo no error, tem q testar
+   */
   save() {
     let loading: Loading = this.showLoading();
-
-    this.produtoService.create(this.produto)
-      .then(sucess => {
-        console.log("SALVOU", sucess);
-        this.toast.create({
-          message: "Produto criado com Sucesso!",
-          duration: 3000
-        });
-        this.navCtrl.setRoot("BuscaPage");
-        loading.dismiss();
-      })
-      .catch(fail => {
-        console.error("ERROR: ", fail);
-        loading.dismiss();
+    this.produtoService.create(this.produto).subscribe(res => {
+      loading.dismiss();
+      this.toast.create({
+        message: "Produto criado com Sucesso!",
+        duration: 3000
       });
+      this.navCtrl.setRoot("BuscaPage");
+    }, error1 => {
+      console.error('ERROR: ', error1);
+      loading.dismiss();
+    });
   }
 
   ionViewCanEnter() {

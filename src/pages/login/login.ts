@@ -22,6 +22,9 @@ export class LoginPage {
 
   userLogin: UserLogin;
 
+  invalidLogin: boolean;
+  invalidPassword: boolean;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,9 +35,6 @@ export class LoginPage {
     private tokenService: TokenService
   ) {
     this.userLogin = new UserLogin();
-
-    this.userLogin.login = null;
-    this.userLogin.password = null;
   }
 
   /**
@@ -42,42 +42,49 @@ export class LoginPage {
    * EU acho q nunca cai no error, TESTAR
    */
   authLogin() {
-    this.userService.signIn(this.userLogin).subscribe((res:any) => {
-      // res vai ter: { token: abcd, user: { dados do usuario, senha, email, etc } }
+    this.initVariables();
+    if (this.isValidFields()) {
+      this.userService.signIn(this.userLogin).subscribe((res:any) => {
+        // res vai ter: { token: abcd, user: { dados do usuario, senha, email, etc } }
+  
+        // Seta o token pelo metodo: set token()
+        this.tokenService.token = res.token;
+        // this.navCtrl.setRoot("BuscaPage");
+      }, (err:any) => {
+        this.userLogin.login = null;
+        this.userLogin.password = null;
 
-      // Seta o token pelo metodo: set token()
-      this.tokenService.token = res.token;
-      this.navCtrl.setRoot("BuscaPage");
-    }, error1 => {
-      console.error('ERROR:\n', error1)
-    });
+        this.isValidFields();
+        console.error('HEREERROR:\n', err.code)
+      
+      });
+    }
   }
 
-  private showToast(code: string): void {
-    if (code === "auth/invalid-email") {
-      this.toast
-        .create({
-          message: `Digite um usuario valido!`,
-          duration: 5000
-        })
-        .present();
+  initVariables() {
+    this.invalidLogin = false;
+    this.invalidPassword = false;
+  }
+  
+  isValidFields() {
+    if (!Boolean(this.userLogin.login)) {
+      this.invalidLogin = true;
+      this.toast.create({
+        message: `Usuario invalida!`,
+        duration: 5000
+      }).present();
     }
-    if (code === "auth/wrong-password") {
-      this.toast
-        .create({
+    if (!Boolean(this.userLogin.password)) {
+      this.invalidPassword = true;
+      this.toast.create({
           message: `Senha invalida!`,
           duration: 5000
-        })
-        .present();
+        }).present();
     }
-    if (code === "auth/user-not-found") {
-      this.toast
-        .create({
-          message: `Usuario não cadastrado!`,
-          duration: 5000
-        })
-        .present();
-    }
+
+    const result = this.invalidLogin || this.invalidPassword;
+    
+    return result;
   }
 
   onRegistro(): void {

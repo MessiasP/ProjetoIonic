@@ -10,19 +10,12 @@ export class ProdutoService {
   configURL = 'http://localhost:3000/api';
   apiURL = `${this.configURL}/produto`;
 
-  authURL = `https://www.googleapis.com/identitytoolkit/v3/relyingparty`
-
   constructor(
     private http: HttpClient,
-    ) {}
+  ) { }
 
-  async findAll() {
-    let localHeaders = new HttpHeaders().set('Authorization', 'Bearer ' +  localStorage.getItem('token'));
-
-    return await this.http.post(`${this.authURL}/getAccountInfo?key=`, {headers: localHeaders}).subscribe(data => {
-      console.log('key', data)
-      this.http.get(`${this.apiURL}`).subscribe(data => console.log("service 1 ", data));
-  });
+  findAll() {
+    return this.http.get(`${this.apiURL}`);
   }
 
   public  findByParam(marca: string) {

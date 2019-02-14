@@ -25,7 +25,7 @@ export class BuscaPage {
 
   produto: Produto;
 
-  products: Produto[];
+  products: Produto[] = [];
 
   produtoVendido: any;
 
@@ -57,11 +57,14 @@ export class BuscaPage {
   }
 
   getAll() {
-    this.produtoService.findAll().then(sucess => {
-      console.log('trouxa', sucess);
-    }).catch(err => {
-      console.log('erro', err);
-    })
+    this.produtoService.findAll().subscribe((res: any) => {
+      // console.log(res.produtoRes.forEach());
+      
+      res.produtoRes.docs.forEach(element => {
+        console.log("and",element);
+        this.products.push(element)
+      });
+    });
   }
 
   verifyCheckbox() {

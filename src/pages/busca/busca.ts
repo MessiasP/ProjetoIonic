@@ -41,8 +41,14 @@ export class BuscaPage {
 
   ) {}
 
-  onDetalhaProduto(): void {
-    this.navCtrl.setRoot("DetalhaProdutoPage");
+  onDetalhaProduto(id, option: string) {
+    switch (option) {
+      case 'edit':
+      this.navCtrl.setRoot("DetalhaProdutoPage", {
+        firstParam: id
+      });
+      break;
+    }
   }
 
   onCadastraProduto(): void {
@@ -61,20 +67,20 @@ export class BuscaPage {
       // console.log(res.produtoRes.forEach());
       
       res.produtoRes.docs.forEach(element => {
-        console.log("and",element);
+        // console.log("and",element);
         this.products.push(element)
       });
     });
   }
 
   verifyCheckbox() {
-    this.produtoVendido = null;
-    // this.produtoVendido = this.products.filter((product) => {
-    //   console.log(product);
+    this.produtoVendido = [];
+    this.produtoVendido = this.products.filter((product) => {
+      // console.log(product);
 
-    //   return product.checked;
-    // });
-    console.log(this.produtoVendido);
+      return product.checked;
+    });
+    // console.log(this.produtoVendido);
     if(this.produtoVendido != null) {
       return this.save();
     }

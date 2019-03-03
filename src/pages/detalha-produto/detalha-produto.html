@@ -19,16 +19,32 @@
 -->
 <ion-content padding>
   <ion-list text-center>
-      <h4 class="textoPrinc">Coca-Cola</h4>
-      <div class="item-profile" id="slide1" ></div>
-        <ion-item>
-          <ion-label text-center>Cod do produto: 123</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label text-center>Descrição: 2 Litros</ion-label>
-        </ion-item><br><br>
-          <button ion-button block color="primary">Adicionar ao carrinho</button>
-          <button ion-button block color="primary" (click)="onResumo()">Ver carrinho</button>
-          <button ion-button block color="danger" (click)="onBusca()">Voltar</button>
+    <ion-item>
+      <ion-label floating>Codígo de Barra:</ion-label>
+      <ion-input [ngModel]="produto.codigoBarra" readonly type="text" ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Nome:</ion-label>
+      <ion-input [ngModel]="produto.nome" readonly type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Marca:</ion-label>
+      <ion-input [ngModel]="produto.marca" readonly type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Valor de Venda Unidade:</ion-label>
+      <ion-input [ngModel]="produto.valorVenda" readonly type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Quantidade:</ion-label>
+      <ion-input [ngModel]="produto.quantidade" readonly type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Descrição:</ion-label>
+      <ion-input [ngModel]="produto.descricao" readonly type="text"> </ion-input>
+    </ion-item>
+    <button ion-button block color="primary">Adicionar ao carrinho</button>
+    <button ion-button block color="primary" (click)="onResumo()">Ver carrinho</button>
+    <button ion-button block color="danger" (click)="onBusca()">Voltar</button>
   </ion-list>
 </ion-content>

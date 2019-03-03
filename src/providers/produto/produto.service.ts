@@ -24,6 +24,10 @@ export class ProdutoService {
 
     });
   }
+  
+  public  findOne(uid: number): Observable<Produto> {
+    return this.http.get(`${this.apiURL}/${uid}`);
+  }
 
   public create( produto: Produto ): Observable<Produto> {
     // Não retornar o subscribe, vc da no subscribe no meto q ta chamando esse ou seja na page

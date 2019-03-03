@@ -72,7 +72,9 @@ export class RegistraPage {
         duration: 3000
       });
       this.navCtrl.setRoot("LoginPage");
-    }, error1 => {
+    }, (error1: any) => {
+      console.log("is here: ", error1);
+      
       this.toast.create({
         message: `Não foi possivel criar usuario!`,
         duration: 3000
@@ -82,7 +84,7 @@ export class RegistraPage {
   }
 
   verificaForm() {
-    if (this.passwordC === this.userLogin.password) {
+    if (this.passwordC === this.userLogin.password && this.userLogin.password.length < 6) {
       return this.passwordInvalid = false;
     }
   }

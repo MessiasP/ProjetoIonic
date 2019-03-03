@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
 
-import { AngularFireAuth } from "angularfire2/auth";
-
 import { UserLogin } from "../../model/user/user.login.model";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient } from "@angular/common/http";
 import {Observable} from "rxjs";
 
 @Injectable()

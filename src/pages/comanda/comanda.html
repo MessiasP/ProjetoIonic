@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle icon-only persistent="false">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+  
+        <ion-title text-center>COMANDA</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content padding>
+  <ion-list>
+    <form (submit)="save()">
+      <ion-item>
+        <ion-label floating>Nome:</ion-label>
+        <ion-input type="text" [(ngModel)]="comanda.nome" name="nome" required></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label floating>Descrição:</ion-label>
+          <ion-input type="text" [(ngModel)]="comanda.descricao" name="descricao" required></ion-input>
+      </ion-item>
+      
+      <ion-card class="card" *ngFor="let product of produtos">
+        <ion-item class="itemBody" col-8 col-sm-8 col-md-10 col-lg-8 col-xl-11>
+          <ion-avatar class="ionAvatar" item-left text-center>
+            <p>{{ product.codigoBarra }}</p>
+            <h3><img src="../../assets/imgs/working-laptop.jpg" /></h3>
+          </ion-avatar>
+          
+          <label>{{ product.nome }}</label>
+          <label class="lblValor">R$ {{ product.valorVenda }}</label>
+          <p>{{ product.descricao }}</p>
+        </ion-item>
+          
+          <ion-item class="acoes" col-4 col-sm-4 col-md-4 col-lg-4 col-xl-2>
+            <ion-item class="itemView" (click)="onDetalhaProduto(product._id, 'edit')">
+            <ion-icon name="eye"></ion-icon>      
+            </ion-item>
+          </ion-item>
+      </ion-card>
+      <ion-item>
+        <ion-label floating>Valor Total:</ion-label>
+        <ion-input type="text" [(ngModel)]="comanda.valorVenda" name="valorVenda" required></ion-input>
+      </ion-item><br><br>
+        <button ion-button block color="primary">FINALIZAR</button>
+    </form>
+    <button ion-button block color="danger" (click)="onBusca()">CANCELAR</button>
+  </ion-list>
+  </ion-content>
+  

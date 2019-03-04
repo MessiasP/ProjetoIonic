@@ -1,34 +1,35 @@
 import { Injectable } from "@angular/core";
 
-import { AngularFireDatabase } from "angularfire2/database";
-import { Produto } from "../../model/produto/produto.model";
 import { Comanda } from "../../model/comanda/comanda.model";
+import { Observable } from "rxjs";
+import { HttpClient } from "@angular/common/http";
 
 
 @Injectable()
 export class ComandaService {
 
-  private comandaList = this.aFDatabase.list<Comanda>("/comandas");
+  configURL = 'http://localhost:3000/api';
+  apiURL = `${this.configURL}/comanda`;
 
-  private uid: string;
+  constructor( 
+    private http: HttpClient, 
+  ) { }
 
-  constructor( private aFDatabase: AngularFireDatabase ) {}
-
-  public findAll() {
-    return this.comandaList;
+  public findAll(): Observable<Comanda> {
+    return this.http.get(`${this.apiURL}`);
   }
 
-  public findOne(uid: string) {
-    return this.aFDatabase;
+  public findOne(uid: string): Observable<Comanda> {
+    return this.http.get(`${this.apiURL}/${uid}`);
   }
 
-  public async  createComanda( comanda: Comanda) {
+  public createComanda(comanda: Comanda): Observable<Comanda> {
     console.log("Service, Obj ", comanda);
-    return await this.comandaList.push(comanda);
+    return this.http.post(`${this.apiURL}`, comanda);
   }
 
-  public delete(uid: string) {
-    return this.aFDatabase.object(uid).remove();
+  public delete(uid: string): Observable<Comanda> {
+    return this.http.delete(`${this.apiURL}/${uid}`);
   }
 
   // public getUid() {

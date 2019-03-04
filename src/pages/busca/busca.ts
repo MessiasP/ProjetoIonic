@@ -15,6 +15,7 @@ import { map } from "rxjs/operators";
 
 import { ProdutoService } from "../../providers/produto/produto.service";
 import { Produto } from "../../model/produto/produto.model";
+import { Comanda } from '../../model/comanda/comanda.model';
 
 @IonicPage()
 @Component({
@@ -24,22 +25,34 @@ import { Produto } from "../../model/produto/produto.model";
 export class BuscaPage {
 
   produto: Produto;
+  comanda: Comanda;
 
   products: Produto[] = [];
 
   produtoVendido: any;
 
   constructor(
-    private comandaService: ComandaService,
     private loadingCtrl: LoadingController,
     public menuCtrl: MenuController,
     public navCtrl: NavController,
     public navParams: NavParams,
+    private comandaService: ComandaService,
     private produtoService: ProdutoService,
     private toast: ToastController,
-    private vendaProdutoService: VendaProdutoService,
+  ) {
+    this.inicializeVariables();
+  }
+  
+  ionViewDidEnter() {
+    //HABILITA MENU CASE F5
+    this.menuCtrl.enable(true);
+    
+    this.getAll();
+  }
 
-  ) {}
+  inicializeVariables() {
+    this.comanda = new Comanda();
+  }
 
   onDetalhaProduto(id, option: string) {
     switch (option) {
@@ -50,16 +63,9 @@ export class BuscaPage {
       break;
     }
   }
-
+  
   onCadastraProduto(): void {
     this.navCtrl.setRoot("CadastraProdutoPage");
-  }
-
-  ionViewDidEnter() {
-    //HABILITA MENU CASE F5
-    this.menuCtrl.enable(true);
-
-    this.getAll();
   }
 
   getAll() {
@@ -82,29 +88,31 @@ export class BuscaPage {
     });
     // console.log(this.produtoVendido);
     if(this.produtoVendido != null) {
-      return this.save();
+      this.comanda.produtos = this.produtoVendido;
+      return this.navCtrl.setRoot("ComandaPage", {
+        idProdutos: this.produtoVendido,
+      });      
+      // return this.save(this.comanda);
     }
       return console.log("marque um algum dos podutos");
     
   }
 
-  save() {
-
-    let loading: Loading = this.showLoading();
-    
+  save(comanda) {
+    // let loading: Loading = this.showLoading();
     console.log("fora", this.produtoVendido);
-    this.comandaService.createComanda(this.produtoVendido).then(sucess => {
+    this.comandaService.createComanda(comanda).subscribe(sucess => {
     console.log("SALVOU", sucess);
     this.produtoVendido = null;
-      this.toast.create({
-        message: 'Produto criado com Sucesso!',
-        duration: 3000
-      });
+      // this.toast.create({
+      //   message: 'Produto criado com Sucesso!',
+      //   duration: 3000
+      // });
     
-    loading.dismiss();
-    }).catch(fail => {
-      console.error("ERROR: ", fail);
-      loading.dismiss();
+    // loading.dismiss();
+    // }).catch(fail => {
+    //   console.error("ERROR: ", fail);
+    //   loading.dismiss();
     })
   }
   

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Comanda } from '../../model/comanda/comanda.model';
 import { Produto } from '../../model/produto/produto.model';
+import { ComandaService } from '../../providers/comanda/comanda.service';
 
 @IonicPage()
 @Component({
@@ -16,17 +17,21 @@ export class ComandaPage {
   comanda: Comanda;
   produto: Produto;
 
-  produtos: Produto[];
+  produtos: Produto;
 
   constructor(
     public navCtrl: NavController, 
-    public navParams: NavParams
+    public navParams: NavParams,
+    public comandaService: ComandaService,
   ) {
     this.inicializeVariables();
-    this.idProdutos = navParams.get('idProdutos');
-    console.log("herehere: ", this.idProdutos);
+    this.getProdutosChecked();
+  }
+  
+  getProdutosChecked() {
+    this.idProdutos = this.navParams.get('idProdutos');
     this.produtos = this.idProdutos;
-    
+    console.log("herehere: ", this.idProdutos);
   }
   
   inicializeVariables() {
@@ -39,7 +44,14 @@ export class ComandaPage {
   }
 
   save() {
-    console.log("LINDAO");
+    if (this.comanda.idProdutos) {
+      this.comanda.idProdutos = this.idProdutos;
+      this.comandaService.createComanda(this.comanda).subscribe(sucess => {
+        console.log("SALVOU", sucess);
+      });
+    }
+    return console.log("Necessario selecionar novos produtos!");
     
   }
+
 }

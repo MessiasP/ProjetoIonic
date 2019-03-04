@@ -5,8 +5,8 @@ export  class Comanda {
       public _id?: number,
       public nome?: string,
       public descricao?: string,
-      public valorVenda?: string,
+      public valorTotal?: number,
       public createdAt?: Date,
-      public produtos?: Produto[],
+      public idProdutos?: Produto[],
    ){}
 }

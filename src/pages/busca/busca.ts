@@ -52,6 +52,7 @@ export class BuscaPage {
 
   inicializeVariables() {
     this.comanda = new Comanda();
+    this.produtoVendido = null;
   }
 
   onDetalhaProduto(id, option: string) {
@@ -82,13 +83,10 @@ export class BuscaPage {
   verifyCheckbox() {
     this.produtoVendido = [];
     this.produtoVendido = this.products.filter((product) => {
-      // console.log(product);
-
       return product.checked;
     });
-    // console.log(this.produtoVendido);
     if(this.produtoVendido != null) {
-      this.comanda.produtos = this.produtoVendido;
+      this.comanda.idProdutos = this.produtoVendido;
       return this.navCtrl.setRoot("ComandaPage", {
         idProdutos: this.produtoVendido,
       });      
@@ -103,7 +101,6 @@ export class BuscaPage {
     console.log("fora", this.produtoVendido);
     this.comandaService.createComanda(comanda).subscribe(sucess => {
     console.log("SALVOU", sucess);
-    this.produtoVendido = null;
       // this.toast.create({
       //   message: 'Produto criado com Sucesso!',
       //   duration: 3000

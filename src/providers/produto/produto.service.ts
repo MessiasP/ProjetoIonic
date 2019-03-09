@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Optional } from "@angular/core";
 
 import { Produto } from "../../model/produto/produto.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -18,11 +18,8 @@ export class ProdutoService {
     return this.http.get(`${this.apiURL}`);
   }
 
-  public  findByParam(marca: string) {
-    return this.http.get('/Produtos'+marca).subscribe(data => {
-      console.log('findParam', data);
-
-    });
+  public  findByParam( uid?: number): Observable<Produto> {
+    return this.http.get(`${this.apiURL}/${uid}`);
   }
   
   public  findOne(uid: number): Observable<Produto> {
@@ -38,10 +35,8 @@ export class ProdutoService {
     // return this.productList.update(produto.codigoBarra, produto);
   }
 
-  public delete(uid: string) {
-    return this.http.get(`${this.apiURL}/${uid}`).subscribe(data => {
-      console.log('delete', data);
-    });
+  public delete(uid: string): Observable<Produto> {
+    return this.http.get(`${this.apiURL}/${uid}`);
   }
 
 

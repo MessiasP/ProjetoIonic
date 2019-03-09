@@ -27,17 +27,17 @@
   <ion-card class="card" *ngFor="let comanda of comandas">
     <ion-item class="itemBody" col-8 col-sm-8 col-md-10 col-lg-8 col-xl-11>
       <ion-avatar class="ionAvatar" item-left text-center>
-        <p>{{ comanda.codigoBarra }}</p>
+        <p>{{ comanda.createdAt }}</p>
         <h3><img src="../../assets/imgs/working-laptop.jpg" /></h3>
       </ion-avatar>
 
       <label>{{ comanda.nome }}</label>
       <label class="lblValor">R$ {{ comanda.valorVenda }}</label>
-      <p>{{ product.descricao }}</p>
+      <p>{{ comanda.descricao }}</p>
     </ion-item>
 
     <ion-item class="acoes" col-4 col-sm-4 col-md-4 col-lg-4 col-xl-2>
-      <ion-item class="itemView" (click)="onDetalhaProduto()">
+      <ion-item class="itemView" (click)="detalhaComanda(comanda._id, 'edit')">
         <ion-icon name="eye"></ion-icon>
       </ion-item>
 

@@ -19,7 +19,7 @@ export class ComandaService {
     return this.http.get(`${this.apiURL}`);
   }
 
-  public findOne(uid: string): Observable<Comanda> {
+  public findOne(uid: number): Observable<Comanda> {
     return this.http.get(`${this.apiURL}/${uid}`);
   }
 

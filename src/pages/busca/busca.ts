@@ -66,16 +66,17 @@ export class BuscaPage {
   }
   
   onCadastraProduto(): void {
-    this.navCtrl.setRoot("CadastraProdutoPage");
+    this.navCtrl.setRoot("CadastraProduteditoPage");
   }
 
   getAll() {
-    this.produtoService.findAll().subscribe((res: any) => {
+    
+    return this.produtoService.findAll().subscribe((res: any) => {
       // console.log(res.produtoRes.forEach());
       
       res.produtoRes.docs.forEach(element => {
         // console.log("and",element);
-        this.products.push(element)
+        this.products.push(element);
       });
     });
   }
@@ -90,28 +91,27 @@ export class BuscaPage {
       return this.navCtrl.setRoot("ComandaPage", {
         idProdutos: this.produtoVendido,
       });      
-      // return this.save(this.comanda);
     }
       return console.log("marque um algum dos podutos");
     
   }
 
-  save(comanda) {
-    // let loading: Loading = this.showLoading();
-    console.log("fora", this.produtoVendido);
-    this.comandaService.createComanda(comanda).subscribe(sucess => {
-    console.log("SALVOU", sucess);
-      // this.toast.create({
-      //   message: 'Produto criado com Sucesso!',
-      //   duration: 3000
-      // });
+  // save(comanda) {
+  //   // let loading: Loading = this.showLoading();
+  //   console.log("fora", this.produtoVendido);
+  //   this.comandaService.createComanda(comanda).subscribe(sucess => {
+  //   console.log("SALVOU", sucess);
+  //     // this.toast.create({
+  //     //   message: 'Produto criado com Sucesso!',
+  //     //   duration: 3000
+  //     // });
     
-    // loading.dismiss();
-    // }).catch(fail => {
-    //   console.error("ERROR: ", fail);
-    //   loading.dismiss();
-    })
-  }
+  //   // loading.dismiss();
+  //   // }).catch(fail => {
+  //   //   console.error("ERROR: ", fail);
+  //   //   loading.dismiss();
+  //   })
+  // }
   
   private showLoading(): Loading {
     let loading: Loading = this.loadingCtrl.create({
@@ -123,7 +123,7 @@ export class BuscaPage {
 
   //procurar produto por parametros
   searchProduct() {
-    this.produtoService.findByParam(this.produto.nome)
+    this.produtoService.findByParam(this.produto._id)
   }
 
   //  getOne() {

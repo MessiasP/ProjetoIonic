@@ -15,8 +15,7 @@ import { Comanda } from '../../model/comanda/comanda.model';
 export class ResumoPage {
 
   comanda: Comanda;
-
-  comandas = [];
+  comandas: Comanda[] = [];
 
   constructor(
     private comandaService: ComandaService,
@@ -25,6 +24,7 @@ export class ResumoPage {
     public menuCtrl: MenuController
   ) {
     this.inicializeVariables();
+    this.searchCarrinhos();
   }
 
   inicializeVariables() {
@@ -34,15 +34,16 @@ export class ResumoPage {
   ionViewCanEnter(){
     //HABILITA MENU CASE F5
     this.menuCtrl.enable(true);
-    
-    this.searchCarrinhos();
   }
   
   searchCarrinhos() {
-    console.log('ta vindo!! ', this.comanda);
-    this.comandaService.findAll().subscribe((comandas) => {
-      return this.comanda = comandas;
-    });
+    this.comandaService.findAll().subscribe((res: any) => {
+      // console.log('ta vindo!! ', res.comandaRes.docs.forEach());
+      this.comanda = res.comandaRes.docs.forEach(element => {
+        // console.log("and",element);
+        this.comandas.push(element);
+      });
+    })
     
     // this.comandaService.findAll()
     // .snapshotChanges()
@@ -58,6 +59,15 @@ export class ResumoPage {
           // });
   }
   
+  detalhaComanda(id, option: string) {
+    switch(option) {
+      case 'edit':
+      return this.navCtrl.push('ComandaPage', {
+        uniqueParam: id,
+      });
+    }
+  }
+
   onPagamento():void {
     this.navCtrl.setRoot('PagamentoPage');
   }
